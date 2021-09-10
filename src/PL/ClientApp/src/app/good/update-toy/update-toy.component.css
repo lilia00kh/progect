@@ -1,0 +1,12 @@
+img {
+    margin: 10px 10px 10px 0px;
+    object-fit: cover;
+    width:200px;
+    height:200px;
+}
+
+.card {
+    margin: 20px;
+    background-color: #edf0f3b8;
+    border-radius: 10px;
+}

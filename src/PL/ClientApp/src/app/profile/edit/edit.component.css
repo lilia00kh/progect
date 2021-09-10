@@ -1,0 +1,22 @@
+.wrapper {
+    margin: 30px;
+    display: grid;
+    background-color: #edf0f3b8;
+    padding: 20px;
+}
+
+
+.edit-button, label, p, a {
+    font-size: larger;
+    margin-right: 30px;
+}
+
+.nav-link, p {
+    padding-left: 15px;
+}
+
+.edit-button {
+    width: auto; 
+    margin-bottom: 10px;
+    text-align: center;
+}

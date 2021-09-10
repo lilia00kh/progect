@@ -1,0 +1,75 @@
+<mat-spinner *ngIf="spin"></mat-spinner>
+<div class="trees" *ngIf="!spin">
+  <div class="filters">
+    <div class="show-button" *ngIf="!showFiltersBool">
+      <button type="button" class="btn btn-secondary btn-lg" (click)="showFilters()">Показати фільтри</button>
+    </div>
+    <div class="show-button" *ngIf="showFiltersBool">
+      <button type="button" class="btn btn-secondary btn-lg" (click)="showFilters()">Сховати фільтри</button>
+    </div>
+    <div *ngIf="showFiltersBool">
+      <div class="price row" id="price">
+        <div class="col value"><p>{{minValue}} грн.</p></div>
+        <div class="col value"><p>{{maxValue}} грн.</p></div>
+        <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>       
+      </div>
+      <div id="color" class="filter">
+        <h3>Колір</h3>
+            <label class="form-check-label"><input type="checkbox" (click)="addColor('зелений')"> Зелений</label>
+            <label class="form-check-label"><input type="checkbox" (click)="addColor('білий')"> Білий</label>
+            <label class="form-check-label"><input type="checkbox" (click)="addColor('голубий')"> Голубий</label>
+      </div>
+      <div id="height" class="filter">
+        <h3>Висота</h3>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(20)"> 20 см</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(30)"> 30 см</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(40)"> 40 см</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(50)"> 50 см</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(60)"> 60 см</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(70)"> 70 см</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(1.1)"> 1.1 м</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(1.2)"> 1.2 м</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(1.4)"> 1.4 м</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(1.5)"> 1.5 м</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(1.6)"> 1.6 м</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(1.8)"> 1.8 м</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(2.1)"> 2.1 м</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(2.2)"> 2.2 м</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(2.4)"> 2.4 м</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(2.5)"> 2.5 м</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(2.7)"> 2.7 м</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(3)"> 3 м</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(3.5)"> 3.5 м</label>
+        <label class="form-check-label"><input class="form-check-input" type="checkbox" (click)="addSize(4)"> 4 м</label>  
+      </div>
+      <div class="results filter filter-btn">
+        <button type="button" class="btn btn-secondary btn-lg filter-btn" (click)="getFilteredTrees()">Фільтрувати</button>
+      </div>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="row" *ngIf="isEmpty" class="alert alert-danger" role="alert">
+      <span>Список порожній</span>
+    </div>
+    <div class="add-button">
+      <button type="button" class="btn btn-secondary btn-lg" *ngIf='isUserAuthenticated && isUserAdmin' (click)="addTree()">+Додати ялинку</button>
+    </div>
+    <div *ngIf="showErrorForRecomendations" class="alert alert-danger" role="alert">
+      <span [innerHTML]="errorMessageForRecomendations"></span>
+    </div>
+    <div class="gallery">
+      <div class="gallery-item" *ngFor="let tree of treesForView">
+        <a class="nav-link"[routerLink]="['/good/tree/order-tree',tree.id]" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+        <img [src]="createImgPath(tree.imageModels[0].imagePath)" alt="profile picture">
+        <br><p class="caption">{{tree.name}}</p>
+        <p>від {{this.minPrice(tree.priceAndSizeModels)}} грн.</p>
+        <p class="buy">Купити</p>
+        </a>
+          <button type="button" class="btn btn-secondary btn-lg" *ngIf='isUserAuthenticated && isUserAdmin' (click)="deleteTree(tree.id)">Видалити</button>
+          <button type="button" class="btn btn-secondary btn-lg" *ngIf='isUserAuthenticated && isUserAdmin' (click)="updateTree(tree.id)">Оновити</button>
+          <button type="button" class="btn btn-secondary btn-lg" *ngIf='isUserAuthenticated && isUserAdmin' (click)="addToRecomendations(tree.id)">У рекомендації</button>              
+      </div>
+    </div>
+  </div>
+</div>

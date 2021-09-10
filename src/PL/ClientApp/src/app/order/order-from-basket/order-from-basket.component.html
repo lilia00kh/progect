@@ -1,0 +1,132 @@
+<mat-spinner *ngIf="spin"></mat-spinner>
+<div class="card" *ngIf="!spin">
+  <div *ngIf="showError" class="alert alert-danger" role="alert">
+    <span [innerHTML]="errorMessage"></span>
+</div>
+  
+  
+    <div class="row">
+      <label for="name" class="col-form-label col-sm-2">Назва товару:</label>
+      <div class="col-md-5">
+        <p>{{this.name}}</p>
+      </div>
+    </div>
+    <div class="row" *ngIf="showColor">
+        <label for="color" class="col-form-label col-sm-2">Колір:</label>
+        <div class="col-md-5">
+          <p>{{this.color}}</p>
+        </div>
+    </div>
+    <div class="row" *ngIf="showSize">
+      <label for="size" class="col-form-label col-sm-2">Розмір:</label>
+      <div class="col-md-5">
+        <p>{{this.size}}</p>
+      </div>
+  </div>
+    <div class="row">
+        <label for="price" class="col-form-label col-sm-2">Загальна ціна:</label>
+        <div class="col-md-5">
+          <p>{{this.price}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <label for="count" class="col-form-label col-sm-2">Кількість:</label>
+        <div class="col-md-5">
+          <p>{{this.count}}</p>
+        </div>
+    </div>
+      <form [formGroup]="dataAboutUserForm" autocomplete="off" novalidate (ngSubmit)="createOrder(dataAboutUserForm.value)">
+        <div class="form-group row">
+          <label for="firstName" class="col-form-label col-sm-2">Ім'я:</label>
+          <div class="col-md-5">
+            <input type="text" id="firstName" formControlName="firstName" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="lastName" class="col-form-label col-sm-2">Прізвище:</label>
+          <div class="col-md-5">
+            <input type="text" id="lastName" formControlName="lastName" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="email" class="col-form-label col-sm-2">Email:</label>
+          <div class="col-md-5">
+            <input type="email" id="email" formControlName="email" class="form-control" />
+          </div>
+          <div class="col-md-5">
+            <em *ngIf="validateControl('email') && hasError('email', 'email')">Будь ласка, введіть коректний email</em>
+            <em *ngIf="validateControl('email') && hasError('email', 'required')">Це поле обов'язкове</em>
+          </div>
+        </div>
+        <div *ngIf="this.phoneError" class="alert alert-danger" role="alert">
+          <span> Формат телефону повинен бути +380 ** ** ** ***</span>
+        </div>
+        <div class="form-group row">
+          <label for="phone" class="col-form-label col-sm-2">Номер:</label>
+          <div class="col-md-5">
+            <input type="text" id="phone" formControlName="phone" class="form-control" />
+          </div>
+          <div class="col-md-5">
+            <em *ngIf="validateControl('phone') && hasError('phone', 'required')">Це поле обов'язкове</em>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="city" class="col-form-label col-sm-2">Місто:</label>
+          <div class="col-md-5">
+            <input type="text" id="city" formControlName="city" class="form-control" />
+          </div>
+          <div class="col-md-5">
+            <em *ngIf="validateControl('city') && hasError('city', 'required')">Це поле обов'язкове</em>
+          </div>
+        </div>
+        <div class="form-group row">
+            <label for="region" class="col-form-label col-sm-2">Область:</label>
+            <div class="col-md-5">
+              <input type="text" id="region" formControlName="region" class="form-control" />
+            </div>
+            <div class="col-md-5">
+              <em *ngIf="validateControl('region') && hasError('region', 'required')">Це поле обов'язкове</em>
+            </div>
+        </div>
+        <div class="row">
+          <label for="count" class="col-form-label col-sm-2">Оберіть доставку:</label>
+          <div class="col-md-5">
+            <select [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedDelivery" (ngModelChange)="onChangeDelivery($event)" >
+              <option *ngFor="let d of this.deliveryTypes" [ngValue]="d"> {{d}} </option>
+            </select>
+          </div>
+          </div>
+          <div class="form-group row" *ngIf="showDetailsAboutDelivery">
+            <label for="index" class="col-form-label col-sm-2">Індекс:</label>
+            <div class="col-md-5">
+              <input [ngModelOptions]="{standalone: true}" type="number" id="index" [ngModel]="index" (ngModelChange)="saveIndex($event)" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group row" *ngIf="showDetailsAboutNewPostDelivery">
+            <label for="department" class="col-form-label col-sm-2">Відділення:</label>
+            <div class="col-md-5">
+              <input [ngModelOptions]="{standalone: true}" type="number" id="department" [ngModel]="department" (ngModelChange)="saveDepartment($event)" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group row" *ngIf="showDetailsAboutDelivery || showDetailsAboutNewPostDelivery">
+            <span>Будь ласка, переконайтеся, з якими максимальними розмірами та вагою допускаються відправлення у даному відділенні</span>        
+        </div>
+        <div *ngIf="showPaymentMessage" class=" row alert alert-success" role="alert">
+          <span [innerHTML]="paymentMessage"></span>
+        </div>
+        <div class="row" *ngIf="showPayment">
+          <label for="count" class="col-form-label col-sm-2">Оберіть спосіб оплати:</label>
+          <div class="col-md-5">
+            <select [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedPayment" (ngModelChange)="onChangePayment($event)" >
+              <option *ngFor="let p of this.paymentTypes" [ngValue]="p"> {{p}} </option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <div class="form-group row">
+          <div class="col-md-1">
+            <button type="submit" class="btn btn-secondary btn-lg" [disabled]="!dataAboutUserForm.valid">Замовити</button>
+          </div>
+        </div>
+    </form>
+</div>

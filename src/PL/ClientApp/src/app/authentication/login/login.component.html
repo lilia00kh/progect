@@ -1,0 +1,51 @@
+
+<div class="wrapper" >
+  <div class="row register-text">
+    <p>Вперше на сайті?</p>
+    <a class="nav-link"[routerLink]="['/authentication/register']" routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact: true}">Реєстрація</a>  
+  </div>
+  <h1 class="row">Вхід</h1>
+  <div class="row">
+    <div class="col">
+      <div *ngIf="showError" class="row alert alert-danger" role="alert">
+        {{errorMessage}}
+      </div>
+      <form [formGroup]="loginForm" autocomplete="off" novalidate (ngSubmit)="loginUser(loginForm.value)">
+        <div class="row">
+          <div *ngIf="validateControl('username') && hasError('username', 'required')" class="col alert alert-danger" role="alert">
+            <span>Логін обов'язкове поле</span>
+          </div>
+        </div>
+        <div class="row">
+          <label for="username" class="col">Логін:</label>
+          <div class="col">
+            <input type="text" id="username" formControlName="username" class="form-control" />
+          </div>
+        </div>
+        <div class="row">
+          <div *ngIf="validateControl('password') && hasError('password', 'required')" class="col alert alert-danger" role="alert">
+            <span>Пароль обов'язкове поле</span>
+          </div>
+        </div>
+        <div class="row">
+          <label for="password" class="col">Пароль:</label>
+          <div class="col">
+            <input type="password" id="password" formControlName="password" class="form-control" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <a [routerLink]="['/authentication/forgotpassword']"> Забули пароль </a>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col login-button">
+            <button type="submit" class="login-button btn btn-secondary btn-lg" [disabled]="!loginForm.valid">Вхід</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

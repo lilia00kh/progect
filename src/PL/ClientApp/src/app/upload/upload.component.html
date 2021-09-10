@@ -1,0 +1,55 @@
+<div >
+  <h2>Додати фото</h2>
+<div class="my-2">
+  <label class="btn btn-secondary" (click)="fileInput.value = null">
+    Загрузити фото
+    <input
+      #fileInput
+      type="file"
+      accept=".jpg, .jpeg, .png"
+      style="display: none"
+      (change)="chooseFile(fileInput.files)"
+      multiple
+    />
+  </label>
+</div>
+
+<div *ngIf="selectedFiles && selectedFiles.length">
+  <div
+    *ngFor="let item of selectedFiles"
+    class="d-flex justify-content-between flex-wrap bg-light text-primary"
+  >
+    <div>{{ item.name }}</div>
+    <div>{{ humanFileSize(item.size) }}</div>
+  </div>
+  <div *ngIf="uploading" class="mt-2">
+  </div>
+  <button
+    type="button"
+    class="btn btn-primary mt-2"
+    (click)="upload()"
+    [disabled]="uploading"
+  >
+    <span *ngIf="!uploading">Загрузити</span>
+    <span *ngIf="uploading"> Загрузка
+      </span>
+  </button>
+</div>
+
+<div *ngIf="errorMsg" class="text-danger">
+  {{ errorMsg }}
+</div>
+
+<div *ngIf="submissionResults && submissionResults.length" class="text-success">
+  <p class="font-weight-bold mb-0">Зображення загружено</p>
+  <div *ngFor="let imageForNewGood of imagesForNewGood">
+  <td class="img-upload">
+    <img [src]="createImgPath(imageForNewGood.imagePath)" alt="profile picture">
+    <button type="button" class="btn btn-secondary btn-lg" (click)="deleteImg(imageForNewGood.imagePath)">
+      Видалити зображення
+    </button>
+  </td>
+  </div>
+  <!-- <pre>{{ imagesForNewGood | json }}</pre> -->
+</div>
+</div>

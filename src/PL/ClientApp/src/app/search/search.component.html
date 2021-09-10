@@ -1,0 +1,30 @@
+<div class="recomendations">
+    <h1 class="search-caption caption">Результати пошуку</h1>
+    <br>
+    <div *ngIf="showError" class="alert alert-danger" role="alert">
+        <span [innerHTML]="errorMessage"></span>
+    </div>
+    <h1 *ngIf="!showError && showTrees" class="tree-caption">Ялинки</h1>  
+    <div *ngIf="!showError" class="tree-gallery">
+      <div class="gallery-item" *ngFor="let tree of trees">
+        <a class="nav-link"[routerLink]="['/good/tree/order-tree',tree.id]" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+        <img [src]="createImgPath(tree.imageModels[0].imagePath)" alt="profile picture">
+        <br><p class="caption">{{tree.name}}</p>
+        </a>
+        <p>від {{this.minPrice(tree.priceAndSizeModels)}} грн.</p>
+      </div>
+    </div>
+    <h1 *ngIf="!showError && showToys" class="toy-caption">Новорічний декор</h1>
+    <div *ngIf="!showError" class="toy-gallery">
+      <div class="gallery-item" *ngFor="let toy of toys">
+        <a class="toy-link"[routerLink]="['/good/toy/order-toy',toy.id]" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+        <img [src]="createImgPath(toy.imageModels[0].imagePath)" alt="profile picture">
+        <br>
+        <p class="caption">{{toy.name}}</p>
+        </a>
+        <p>від {{toy.price}} грн.</p>
+      </div>
+    </div>
+  </div>

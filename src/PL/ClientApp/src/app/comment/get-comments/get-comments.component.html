@@ -1,0 +1,62 @@
+<mat-spinner *ngIf="spin"></mat-spinner>
+<div class="row" *ngIf="!spin&&isEmpty" class="is-empty" role="alert">
+  <span>Список коментарів порожній</span>
+</div>
+<div *ngIf="!spin">
+  <div class="card">
+    <div *ngIf="showError" class="alert alert-danger" role="alert">
+      <span [innerHTML]="errorMessage"></span>
+    </div>
+    <form [formGroup]="addCommentForm" autocomplete="off" novalidate >
+      <div class="form-group row">
+        <label for="text" class="col-form-label col-sm-2">Відгук: </label>
+        <div class="col-md-5">
+          <input type="text" id="text" formControlName="text" class="form-control" />
+        </div>
+      </div>
+      <br>
+      <div class="form-group row">
+        <div class="col-md-1">
+          <button (click)="addComment(addCommentForm.value)" class="btn btn-secondary btn-lg" [disabled]="!addCommentForm.valid">Додати</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div *ngFor="let comment of comments">
+    <div class="comment">
+      <div class="row">
+        <div class="col comment-text">
+          <p>{{comment.userName}}</p>
+        </div>
+        <div class="col comment-text">
+         <p>{{this.formatDate(comment.date)}}</p>
+       </div>
+      </div>
+      <div class="row comment-text">
+        <p>{{comment.text}}</p>
+      </div>
+      <div class="row" *ngIf='canDeleteComment(comment.userName)'>
+        <button class="btn btn-secondary btn-lg" (click)="deleteComment(comment.id)">Видалити відгук</button>  
+      </div>
+      <div class="row">
+        <button class="btn btn-secondary btn-lg" (click)="AnswerToComment(comment.id)">Відповісти</button> 
+      </div>
+    </div>
+    <div *ngFor="let answerToComment of comment.answerToCommentModels" class="answer">
+      <div class="row">
+        <div class="col comment-text">
+          <p>{{answerToComment.userName}}</p>
+        </div>
+        <div class="col comment-text">
+         <p>{{this.formatDate(answerToComment.date)}}</p>
+       </div>
+      </div>
+      <div class="row comment-text">
+        <p>{{answerToComment.text}}</p>
+      </div>
+      <div class="row" *ngIf='canDeleteComment(answerToComment.userName)'>
+        <button class="btn btn-secondary btn-lg" (click)="deleteAnswerToComment(answerToComment.id)">Видалити відповідь</button>  
+      </div>
+    </div>
+  </div>  
+</div>

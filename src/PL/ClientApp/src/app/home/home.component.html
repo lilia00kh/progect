@@ -1,0 +1,31 @@
+
+<mat-spinner *ngIf="spin"></mat-spinner>
+<div *ngIf="!spin&&showError" class="alert alert-danger" role="alert">
+  <span [innerHTML]="errorMessage"></span>
+</div>
+<div class="recomendations" *ngIf="!spin&&!showError">
+  <div class="tree-gallery">
+    <div class="gallery-item" *ngFor="let tree of trees">
+      <a class="nav-link"[routerLink]="['/good/tree/order-tree',tree.id]" routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact: true}">
+      <img [src]="createImgPath(tree.imageDtos[0].imagePath)" alt="profile picture">
+      <p class="caption">{{tree.name}}</p>
+      <p>від {{this.minPrice(tree.priceAndSizeDtos)}} грн.</p>
+      <p class="buy">Купити</p>
+      </a>
+      <button type="button" class="btn btn-secondary btn-lg" *ngIf='isUserAuthenticated && isUserAdmin' (click)="deleteRecomendation(tree.id)">Видалити</button>     
+    </div>
+  </div>
+  <div class="toy-gallery">
+    <div class="gallery-item" *ngFor="let toy of toys">
+      <a class="nav-link"[routerLink]="['/good/toy/order-toy',toy.id]" routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact: true}">
+      <img [src]="createImgPath(toy.imageDtos[0].imagePath)" alt="profile picture">
+      <p class="caption">{{toy.name}}</p>
+      <p>від {{toy.price}} грн.</p>
+      <p class="buy">Купити</p>
+      </a>
+      <button type="button" class="btn btn-secondary btn-lg" *ngIf='isUserAuthenticated && isUserAdmin' (click)="deleteRecomendation(toy.id)">Видалити</button>     
+    </div>
+  </div>
+</div>

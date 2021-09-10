@@ -1,0 +1,45 @@
+  <nav class="navbar">
+      <ul class="topmenu">
+        <li class="nav-item left-side">
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active"
+       [routerLinkActiveOptions]="{exact: true}">Головна</a>
+        </li>
+        <li class="nav-item left-side">
+          <a class="nav-link a-with-angle"[routerLink]="['/good/tree/all']" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">Ялинки</a>
+        <ul class="submenu">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/good/tree/литі']" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}"> Литі ялинки </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/good/tree/комбіновані']" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}"> Комбіновані ялинки </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/good/tree/звичайні']" routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"> Звичайні ялинки </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/good/tree/штучні']" routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"> Штучні сосни </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/good/tree/засніжені']" routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"> Засніжені ялинки </a>
+          </li>     
+        </ul>
+      </li>                
+        <li class="nav-item left-side">
+          <a class="nav-link" [routerLink]="['/good/toy']" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}"> Новорічний декор </a>
+        </li>
+        <li class="nav-item right-side">
+          <a class="nav-link" [routerLink]="['/comment']" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}"> Відгуки </a>
+        </li>
+        <li class="nav-item right-side">
+          <button class="nav-link-sub btn btn-link nav-link" (click)="goToBottom()"> Контакти</button>
+        </li>
+      </ul>  
+  </nav>

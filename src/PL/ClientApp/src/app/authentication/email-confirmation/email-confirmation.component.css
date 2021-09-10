@@ -1,0 +1,11 @@
+.card {
+    background-color:none;
+    display: grid;
+    border: none;
+    margin: 0px 50px;
+    padding: 20px;
+}
+
+.register-button, label {
+    font-size: larger;
+}

@@ -1,0 +1,71 @@
+.card {
+    display: grid;
+    background-color: #e2e2e2d2;
+    margin: 20px 50px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.is-empty {
+    margin: 20px;
+}
+
+.spinner {
+    justify-content: center;
+}
+
+.comment {
+    margin: 20px;
+    border-radius: 20px;
+    width: 50%;
+    border: solid;
+    border-color: blue;    
+    background-color: #ffffffb0;
+}
+
+.answer {
+    margin: 20px;
+    width: 50%;
+    margin-left: auto;
+    border-radius: 20px;
+    border: solid;
+    border-color: cadetblue;    
+    background-color: #f0f8ffc2;
+}
+
+.comment-text {
+    font-size: larger;
+    padding: 5px 30px;
+    display: grid;
+
+}
+
+button {
+    margin: 10px 20px;
+}
+
+p, label {
+    font-size: larger;
+    word-wrap:break-word;
+    overflow-x:hidden;
+}
+
+@media (min-width: 320px) and (max-width: 699px) {
+    
+.comment {
+    margin: 20px;
+    border-radius: 20px;
+    width: 80%;
+    border: solid;
+    border-color: blue;
+}
+
+.answer {
+    width: 80%;
+    margin: 5px 20px 0px 40px;
+    border-radius: 20px;
+    border: solid;
+    border-color: cadetblue;
+}
+
+}

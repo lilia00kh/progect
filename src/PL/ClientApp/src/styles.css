@@ -1,0 +1,136 @@
+mat-spinner {
+  margin: 100px auto;
+}
+
+p.caption {
+  font-weight: bold;
+}
+
+.loading {
+  text-align: center;
+  margin: 100px auto;
+}
+
+body {
+    font-family: Georgia, serif;
+    /* font-size: larger; */
+    background: url(assets/images/11111.jpg) top center repeat-y ;
+    background-size: cover;
+}
+
+h1 {
+  font-size: large;
+}
+
+/* img {
+  box-shadow: 10px 10px 5px grey;
+} */
+
+p, label {
+    font-size: initial;
+    font-weight: unset;
+}
+
+.gallery-item {
+  padding: 20px;
+  margin: 10px;
+  background-color: #edf0f3b8;
+  text-align: center;
+  width: fit-content;
+  border-radius: 10px;
+}
+
+.buy {
+  color: cornflowerblue;
+  text-decoration: underline;
+}
+
+
+
+.description {
+  background-color: #edf0f3b8;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+a {
+    /* font-size: large; */
+    z-index: 1;
+}
+
+.form-control, .btn-secondary {
+    /* font-size: larger; */
+}
+
+
+.topmenu > li {
+  display: inline-block;
+  margin-right: 20px;
+  position: relative;
+}
+
+.topmenu > li:last-child {
+  margin-right: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.fa {
+  padding-left: 10px;
+}
+
+.submenu {
+  background-color: white;
+  padding: 10px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-left: -60px;
+  width: max-content;
+  z-index: 10;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+.submenu {
+  display: grid;
+  visibility: hidden;
+}
+
+.topmenu li:hover .submenu {visibility: visible;}
+
+
+.navbar { 
+    height: 100%;
+    padding-bottom: 100%;
+    border-radius: 0%;
+    padding: 0px 20px 0px 20px;
+  }
+
+@media (max-width: 699px) {
+  body {
+    background: url(assets/images/11111.jpg) repeat-y ;
+    background-size: contain;
+  }
+    .nav-item {
+      display:grid;
+    }
+  }
+  
+  @media (min-width: 700px) {
+    .nav-item {
+      display: inline;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    
+    h1 {
+      font-size: x-large;
+    }
+  }

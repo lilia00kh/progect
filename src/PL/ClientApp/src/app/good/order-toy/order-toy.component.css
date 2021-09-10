@@ -1,0 +1,128 @@
+.wrapper {
+  margin: 30px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  background-color: #edf0f3b8;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.card {
+  display: grid;
+  border: none;
+  margin: 20px;
+  padding: 20px;
+  background-color: #edf0f3b8;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.description-text {
+  padding: 0px 10px;
+}
+
+p {
+  word-wrap:break-word;
+}
+
+.description {
+  margin: 30px;
+  display: grid;
+}
+
+.gallery {
+
+    justify-content: center;
+    align-items: center;
+    grid-area: gallery;
+}
+
+p, h2, label {
+    padding: 10px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.toy {
+    justify-content: center;
+    grid-area: toy;
+}
+
+.arrow-button {
+  font-size: large;
+}
+
+.error-message {
+  align-items: center;
+  text-align: center;
+}
+
+.toy-button {
+    margin: 20px;
+    font-size: larger;
+}
+
+.toy-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
+  width: 50%;
+  width:200px;
+  height:200px;
+}
+
+.toy-button {
+  text-align: center;
+}
+
+.col {
+    margin: 0px;
+    padding: 0px;
+    width: fit-content;
+}
+
+button {    
+    text-align: center;
+}
+
+@media (min-width: 320px) and (max-width: 699px) {
+  .wrapper {
+    grid-template-areas:
+      "gallery"
+      "toy";
+  }
+  }
+
+  @media (min-width: 700px) and (max-width: 949px) {
+    .toy-img {
+      height: 300px;
+      width: 300px;
+    }
+    .wrapper {
+      grid-template-areas:
+        "gallery toy";
+    }
+  }  
+  
+  @media (min-width: 950px) {
+    .wrapper {
+      grid-template-areas:
+        "gallery toy";
+    }
+    .toy-img {
+      height: 400px;
+      width: 400px;
+    }
+  }

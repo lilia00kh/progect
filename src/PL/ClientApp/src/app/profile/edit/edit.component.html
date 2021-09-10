@@ -1,0 +1,45 @@
+<mat-spinner *ngIf="spin"></mat-spinner>
+<div class="wrapper" *ngIf="!spin">
+  <h1>Редагувати:</h1>
+  <div class="row">
+    <p>Ваші дані:</p>
+  </div>
+  <div class="row">
+    <p>Ім'я: {{profileModel.firstName}}</p>
+  </div>
+  <div class="row">
+    <p>Прізвище: {{profileModel.lastName}}</p>
+  </div>
+  <div class="row">
+    <p>Email: {{profileModel.email}}</p>
+  </div>
+  <br/>
+  <form [formGroup]="profileForm">
+    <div class="form-group row">
+      <label for="firstname" class="col-form-label col-sm-2">Ім'я:</label>
+      <div class="col-md-5">
+        <input type="text" id="firstname" formControlName="firstName" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="secondName" class="col-form-label col-sm-2">Прізвище:</label>
+      <div class="col-md-5">
+        <input type="text" id="secondName" formControlName="lastName" class="form-control" />
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-md-5">
+      <button type="button" class="col edit-button btn btn-secondary btn-lg" (click)="saveForm()">Зберегти</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <button type="button" class="col edit-button btn btn-secondary btn-lg" (click)="resetForm()">Скинути зміни</button>
+    </div>
+    
+  </div>
+  <div class="row">
+      <a class="nav-link" [routerLink]="['/authentication/resetmypassword']"> Змінити пароль </a>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<mat-spinner *ngIf="spin"></mat-spinner>
+<div *ngIf="!spin">
+  <div class="add-button">
+    <button type="button" class="btn btn-secondary btn-lg" *ngIf='isUserAuthenticated && isUserAdmin' (click)="addToy()">+Додати прикрасу</button>
+  </div>
+  <div class="row" *ngIf="!spin&&isEmpty" class="alert alert-danger" role="alert">
+    <span>Список порожній</span>
+  </div>
+  <div class="row" *ngIf="showError" class="alert alert-danger" role="alert">
+    <span [innerHTML]="errorMessage"></span>
+  </div>
+  <div class="gallery">
+    <div class="gallery-item" *ngFor="let toy of toys">
+      <a class="toy-link"[routerLink]="['/good/toy/order-toy',toy.id]" routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact: true}">
+      <img [src]="createImgPath(toy.imageModels[0].imagePath)" alt="profile picture">
+      <br>
+      <p class="caption">{{toy.name}}</p>
+      <p>від {{toy.price}} грн.</p>
+      <p class="buy">Купити</p>
+      </a>
+        <button type="button" class="btn btn-secondary btn-lg" *ngIf='isUserAuthenticated && isUserAdmin' (click)="deleteToy(toy.id)">Видалити</button>
+        <button type="button" class="btn btn-secondary btn-lg" *ngIf='isUserAuthenticated && isUserAdmin' (click)="updateToy(toy.id)">Оновити</button> 
+        <button type="button" class="btn btn-secondary btn-lg" *ngIf='isUserAuthenticated && isUserAdmin' (click)="addToRecomendations(toy.id)">У рекомендації</button>                    
+    </div>
+  </div>
+</div>

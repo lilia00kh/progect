@@ -1,0 +1,22 @@
+.card {
+    display: grid;
+    border: none;
+    margin: 0px 50px;
+    padding: 20px;
+    background: none;
+    margin: 20px;
+    background-color: #edf0f3b8;
+    border-radius: 10px;
+}
+
+.row {
+    text-align: center;
+}
+
+.btn{
+    margin: 10px;
+}
+
+select {
+    margin: 15px;
+}

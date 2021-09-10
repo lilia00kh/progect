@@ -1,0 +1,100 @@
+.active {
+  font-weight:bold;
+  color: green;
+  border-radius: 5%;
+}
+
+.submenu {
+  margin-left: 0px;
+  /* text-align: center; */
+  margin-top: 20px;
+  padding: 10px 10px 10px 4px;
+  background-color: gray;
+}
+
+a:focus {
+  border-bottom: 1px solid;  
+  font-weight:bold;
+}
+
+.navbar { 
+  background-color:  white;
+  border-color: black;
+  justify-content: center;
+}
+
+
+.nav-link {
+  font-size: large;
+  color: black;
+  padding: 0px;
+  list-style-type: circle;
+}
+
+.nav-item {
+  list-style-type: circle;
+}
+
+ul {
+  padding: 0px;
+  margin: 0px;
+  list-style-type: circle;
+}
+
+.a-with-angle {
+  display: initial;
+}
+
+@media (min-width: 1440px) {
+
+  .left-side {
+    right: 400px;
+  }
+  
+  .right-side {
+    left: 400px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1439px)  {
+
+  .left-side {
+    right: 300px;
+  }
+  
+  .right-side {
+    left:300px;
+  }
+    
+  .nav-link {
+    font-size: large;
+  }
+}
+
+@media (max-width: 699px) {
+.topmenu {
+  display: grid;
+}
+}
+
+@media (min-width: 750px) and (max-width: 950px) {
+  .left-side {
+    right: 100px;
+  }
+  
+  .right-side {
+    left: 100px;
+  }
+  
+}
+
+@media (min-width: 951px) and (max-width: 1199px) {
+  .left-side {
+    right: 200px;
+  }
+  
+  .right-side {
+    left: 200px;
+  }
+  
+}

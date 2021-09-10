@@ -1,0 +1,109 @@
+.active {
+    font-weight:bold;
+    border-radius: 5%;
+}
+
+.icon {
+  box-shadow: none;
+  margin: 10px;
+  height: 40px;
+  width: 40px;
+}
+
+.a-icon, a:active , a:link , a:visited {
+  text-decoration: none;
+}
+
+p, a {
+  font-size: large;
+  color: white;
+}
+  
+  .footer {
+    margin: 20px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+  } 
+  
+  .logotype {
+    grid-area: logotype;
+    margin-right: auto;
+    margin-left: 0;
+  }
+  
+  .phone {
+    grid-area: phone;
+    font-size: large;
+    text-align: center;
+  }
+  
+  .text {
+    grid-area: text;
+  }
+  
+  .col {
+    padding: 0px;
+    margin: 0px;
+  }  
+  
+  .row {
+    padding: 0px;
+    margin: 0px;
+  }  
+  
+  .logo {
+    height: 80px;
+    box-shadow: none;
+  }  
+    
+    a:focus {
+      border-bottom: 1px solid;
+      font-weight:bold;
+    }
+    
+  @media (min-width: 700px) {
+
+    .text {
+      margin-left: auto;
+    }
+  
+    p {
+      margin-bottom: 0px;
+    }
+  
+    .footer {
+      grid-template-areas:
+      "logotype text phone";
+      grid-template-columns: 30% 40% 30%;
+    }
+  }  
+   
+  @media (min-width: 1440px) {
+
+    .footer {
+      grid-template-columns: 20% 55% 30%;
+    }  
+  }
+  
+    @media (min-width: 1024px) and (max-width: 1440px){
+
+      p {
+        font-size: large;
+      }
+    }
+  
+  @media (min-width: 320px) and (max-width: 699px) {  
+  
+    .footer {
+      text-align: center;
+      justify-content: center;
+      grid-template-areas:
+      "logotype"
+      "text"
+      "phone"
+    }
+  
+    }
+  
+   

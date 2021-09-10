@@ -1,0 +1,23 @@
+.wrapper {
+    grid-gap: 30px;
+    display: grid;
+    margin-bottom: 70px;
+    padding: 30px;
+}
+
+.card {
+    background-color: #edf0f3b8;
+}
+
+label {
+    padding-right: 5px;
+}
+
+.message {
+    text-align: center;
+}
+
+.row {
+    margin: 0;
+    padding: 10px;;
+}

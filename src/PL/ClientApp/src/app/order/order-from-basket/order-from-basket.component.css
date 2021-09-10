@@ -1,0 +1,14 @@
+.card {
+    display: grid;
+    border: none;
+    margin: 20px;
+    padding: 20px;
+    background-color: #edf0f3b8;
+    padding: 20px;
+}
+
+span {
+    padding-left: 20px;
+    color:darkred ;
+}
+

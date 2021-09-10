@@ -1,0 +1,42 @@
+<mat-spinner *ngIf="spin"></mat-spinner>
+<div *ngIf="!spin">
+  <div *ngIf="!showBasket">
+    <h2>Корзина порожня :(</h2>
+  </div>
+  <div class="basket">
+    <h2 *ngIf="trees.length!=0">Ялинки</h2>
+    <div class="basket">
+        <div class="gallery-item" *ngFor="let tree of trees">
+         
+          <a class="nav-link"[routerLink]="['/good/tree/order-tree',tree.treeId]" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"> <img [src]="createImgPath(tree.imageModels[0].imagePath)" alt="profile picture"><br>{{tree.name}}</a>
+          <br>
+          <label>Колір: {{tree.color}}</label>
+          <br>
+          <label>Загальна ціна: {{tree.price}} грн.</label>
+          <br>
+          <label>Розмір: {{tree.size}}</label>
+          <br>
+          <label>Кількість: {{tree.count}}</label>
+          <br>
+          <button type="button" class="btn btn-secondary btn-lg" (click)="deleteGood(tree.id)">Видалити</button>   
+          <button type="button" class="btn btn-secondary btn-lg" (click)="orderTree(tree.treeId)">Замовити</button>       
+        </div>
+    </div>
+    <h2 *ngIf="toys.length!=0">Новорічний декор</h2>
+    <div class="basket">
+        <div class="gallery-item" *ngFor="let toy of toys">
+          <a class="toy-link"[routerLink]="['/good/toy/order-toy',toy.toyId]" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"><img [src]="createImgPath(toy.imageModels[0].imagePath)" alt="profile picture">
+          <br><p class=""></p>{{toy.name}}</a>
+          <br>
+          <label>Загальна ціна: {{toy.price}} грн.</label>
+          <br>
+          <label>Кількість: {{toy.count}}</label> 
+          <br>
+          <button type="button" class="btn btn-secondary btn-lg" (click)="deleteGood(toy.id)">Видалити</button>  
+          <button type="button" class="btn btn-secondary btn-lg" (click)="orderToy(toy.toyId)">Замовити</button>        
+          </div>
+      </div>
+  </div>
+</div>

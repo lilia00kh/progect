@@ -1,0 +1,45 @@
+<div class="header-menu">
+  <div class="logotype" >
+    <img class="logo" src="../../assets/images/logo.png" alt="logo"/>
+  </div>
+  <!-- <div class="phone">
+    <p style="color: aliceblue;">+380983839980</p>
+  </div> -->
+  <div class="logout">
+    <nav class="navbar">
+      <ul class="topmenu">
+        <li *ngIf='!isUserAuthenticated' class="nav-item">
+          <a class="nav-link"[routerLink]="['/authentication/login']" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}">Вхід</a>
+        </li>
+        <li *ngIf='isUserAuthenticated' class="nav-item">
+          <a class="nav-link a-with-angle" [routerLink]="['/profile/edit']" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">Профіль <span>🛒</span> </a>
+        <ul class="submenu">
+          <li *ngIf='isUserAuthenticated' class="nav-item">
+            <a class="nav-link-sub" [routerLink]="['/basket']" routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"> Корзина </a>
+          </li>
+          <li *ngIf='isUserAuthenticated' class="nav-item">
+            <a class="nav-link-sub" [routerLink]="['/profile/edit']" routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"> Профіль </a>
+          </li>
+          <li *ngIf='isUserAuthenticated' class="nav-item">
+            <a class="nav-link-sub" [routerLink]="['/order/get-orders']" routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"> Замовлення </a>
+          </li>
+          <li *ngIf='isUserAuthenticated' class="nav-item">
+            <button class="nav-link-sub btn btn-link nav-link" (click)="logout()">Вихід</button>
+          </li>  
+        </ul>
+      </ul>  
+  </nav>
+  
+  </div>
+  <div class="search">
+    <form [formGroup]="searchForm" class="example" action="action_page.php">
+      <input formControlName="name" type="text" placeholder="Пошук..." name="search">
+      <button type="submit" (click)="search(searchForm.value)"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+</div>

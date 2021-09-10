@@ -1,0 +1,99 @@
+<div *ngIf="showError" class="alert alert-danger" role="alert">
+    <span [innerHTML]="errorMessage"></span>
+</div>
+  
+  
+    <div class="row">
+      <label for="name" class="col-form-label col-sm-2">Name:</label>
+      <div class="col-md-5">
+        <p>{{this.name}}</p>
+      </div>
+    </div>
+    <div class="row">
+        <label for="size" class="col-form-label col-sm-2">Size:</label>
+        <div class="col-md-5">
+          <p>{{this.size}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <label for="price" class="col-form-label col-sm-2">Price:</label>
+        <div class="col-md-5">
+          <p>{{this.price}}</p>
+        </div>
+    </div>
+    <div>
+        <label for="count" class="col-form-label col-sm-2">Count:</label>
+        <div class="col-md-5">
+          <p>{{this.count}}</p>
+        </div>
+    </div>
+    <div>
+        <h2>Select delivery</h2>
+        <select [(ngModel)]="selectedDelivery" (ngModelChange)="onChangeDelivery($event)" >
+          <option *ngFor="let d of this.deliveryTypes" [ngValue]="d"> {{d}} </option>
+        </select>
+      </div>
+      <div>
+        <h2>Select payment</h2>
+        <select [(ngModel)]="selectedPayment" (ngModelChange)="onChangePayment($event)" >
+          <option *ngFor="let p of this.paymentTypes" [ngValue]="p"> {{p}} </option>
+        </select>
+      </div>
+      
+    <form [formGroup]="dataAboutUserForm" autocomplete="off" novalidate (ngSubmit)="createOrder(dataAboutUserForm.value)">
+        <div class="form-group row">
+          <label for="firstName" class="col-form-label col-sm-2">First Name:</label>
+          <div class="col-md-5">
+            <input type="text" id="firstName" formControlName="firstName" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="lastName" class="col-form-label col-sm-2">Last Name:</label>
+          <div class="col-md-5">
+            <input type="text" id="lastName" formControlName="lastName" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="email" class="col-form-label col-sm-2">Email:</label>
+          <div class="col-md-5">
+            <input type="email" id="email" formControlName="email" class="form-control" />
+          </div>
+          <div class="col-md-5">
+            <em *ngIf="validateControl('email') && hasError('email', 'email')">Please provide a valid email</em>
+            <em *ngIf="validateControl('email') && hasError('email', 'required')">Email is required</em>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="phone" class="col-form-label col-sm-2">Phone:</label>
+          <div class="col-md-5">
+            <input type="text" id="phone" formControlName="phone" class="form-control" />
+          </div>
+          <div class="col-md-5">
+            <em *ngIf="validateControl('phone') && hasError('phone', 'required')">Phone is required</em>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="city" class="col-form-label col-sm-2">City:</label>
+          <div class="col-md-5">
+            <input type="text" id="city" formControlName="city" class="form-control" />
+          </div>
+          <div class="col-md-5">
+            <em *ngIf="validateControl('city') && hasError('city', 'required')">City is required</em>
+          </div>
+        </div>
+        <div class="form-group row">
+            <label for="region" class="col-form-label col-sm-2">Region:</label>
+            <div class="col-md-5">
+              <input type="text" id="region" formControlName="region" class="form-control" />
+            </div>
+            <div class="col-md-5">
+              <em *ngIf="validateControl('region') && hasError('region', 'required')">Region is required</em>
+            </div>
+          </div>
+        <br>
+        <div class="form-group row">
+          <div class="col-md-1">
+            <button type="submit" class="btn btn-info" [disabled]="!dataAboutUserForm.valid">Order</button>
+          </div>
+        </div>
+      </form>

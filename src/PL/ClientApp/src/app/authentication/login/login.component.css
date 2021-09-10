@@ -1,0 +1,42 @@
+.wrapper {
+    background-color: none;
+    grid-gap: 10px;
+    display: grid;
+    grid-area: card;
+    width: fit-content;
+    justify-items: center;
+    align-items: center;
+    margin-top: 20px;
+    margin: 20px auto;
+    margin-bottom: 70px;
+    padding: 30px;
+    background-color: #edf0f3b8;
+    border-radius: 10px;
+}
+
+.alert-danger {
+    margin: 15px;
+}
+
+a {
+    font-size: larger;
+}
+
+.nav-link {
+    padding: 0px 10px;
+}
+
+.login-button {
+    font-size: larger;
+    text-align: center;
+}
+
+.register-text {
+    text-align: center;
+}
+
+.validation {
+    color: darkred;
+}
+
+

@@ -1,0 +1,42 @@
+<mat-spinner *ngIf="spin"></mat-spinner>
+<div class="wrapper" *ngIf="!spin">
+    <div *ngIf="showError">
+        <h1 class="message">{{errorMessage}}</h1>
+    </div>
+    <div class="card" *ngFor="let order of orders">
+        <div class="row">
+            <label>Товар:</label>
+            <p>{{order.goodDetails}}</p>
+        </div>
+        <div class="row">
+            <label>Ім'я та прізвище замовника: </label>
+            <p>{{order.firstName}} {{order.lastName}} </p>
+        </div>
+        <div class="row">
+            <label>Номер: </label>
+            <p>{{order.phone}}</p>
+        </div>
+        <div class="row">
+            <label>Email: </label>
+            <p>{{order.userEmail}}</p>
+        </div>
+        <div class="row">
+            <label>Адреса: </label>
+            <p>{{order.address}}</p>
+        </div>
+        <div class="row">
+            <label>Деталі доставки: </label>
+            <p>{{order.deliveryDetails}}</p>
+        </div>
+        <div class="row">
+            <label>Деталі оплати: </label>
+            <p>{{order.paymentDetails}}</p>
+        </div>
+        <div class="row">
+            <button *ngIf="isUserAdmin" type="submit" class="btn btn-secondary btn-lg" (click)="changePaymentStatus(order)">Змінити статус оплати</button>
+        </div>
+        <div class="row">
+            <button *ngIf="isUserAdmin" type="submit" class="btn btn-secondary btn-lg" (click)="deleteOrder(order.id)">Видалити замовлення</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+h2{
+    text-align: center;
+    padding: 20px;
+}
+
+a {
+    color: black;
+}
+
+p.caption {
+    margin: 10px 0px 0px 0px;
+    font-size: larger;
+    font-weight: unset;
+}
+
+img {
+    object-fit: cover;
+    width:400px;
+    height:400px;
+}
+
+button {
+    width: 150px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.gallery {
+    display: grid;
+    margin: 30px;
+    justify-content: center;
+    grid-template-columns: 250px 250px 250px;    
+}
+
+.basket {
+    margin: 30px;
+    text-align: center;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+@media (min-width: 320px) and (max-width: 499px) {
+    img {
+        height: 200px;
+        width: 200px;
+    }
+  }

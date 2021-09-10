@@ -1,0 +1,10 @@
+  <div class="wrapper">
+    <app-header class="main-head"></app-header>
+    <app-menu class = "side"></app-menu>
+    <article class="content">
+      <mat-spinner *ngIf="spin"></mat-spinner>
+      <router-outlet *ngIf="!spin"></router-outlet>
+    </article>
+    <app-footer class="main-footer">The footer</app-footer>
+  </div>
+  

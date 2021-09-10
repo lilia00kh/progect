@@ -1,0 +1,32 @@
+.card {
+    background: none;
+    display: grid;
+    border: none;
+    padding: 20px;
+    margin: 20px;
+    background-color: #edf0f3b8;
+    border-radius: 10px;
+}
+
+.row {
+    align-items: center;
+}
+
+img {
+    margin: 10px 10px 10px 0px;
+    object-fit: cover;
+    width:200px;
+    height:200px;
+}
+
+.btn{
+    margin: 10px;
+}
+
+select {
+    margin: 15px;
+}
+
+.radio-button {
+    padding: 0px 20px;
+}

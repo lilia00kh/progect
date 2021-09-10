@@ -1,0 +1,37 @@
+<div class="card">
+    <div class="card-body">
+      <h1 class="card-title">Додати прикрасу</h1>
+  
+      <div *ngIf="showError" class="alert alert-danger" role="alert">
+        <span [innerHTML]="errorMessage"></span>
+      </div>
+      <app-upload (onUploadFinished)="uploadFinished($event)" (deleteFinished)="deleteImg($event)"></app-upload>
+      <form [formGroup]="addToyForm" autocomplete="off" novalidate >
+        <div class="form-group row">
+          <label for="name" class="col-form-label col-sm-2">Назва:</label>
+          <div class="col-md-5">
+            <input type="text" id="name" formControlName="name" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="description" class="col-form-label col-sm-2">Опис:</label>
+          <div class="col-md-5">
+            <textarea id="description" rows="4" cols="50"  formControlName="description" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="price" class="col-form-label col-sm-2">Ціна:</label>
+          <div class="col-md-5">
+            <input id="price" type="number" formControlName="price" class="form-control"/>
+          </div>
+        </div>
+        <br>
+        <div class="form-group row">
+          <div class="col-md-1">
+            <button class="btn btn-secondary btn-lg" (click)="addToy(addToyForm.value)" [disabled]="!addToyForm.valid">Додати</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

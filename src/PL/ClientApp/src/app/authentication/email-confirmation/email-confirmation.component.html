@@ -1,0 +1,13 @@
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">Підтвердження email</h1>
+
+        <div *ngIf="showError" class="alert alert-danger" role="alert">
+            {{errorMessage}}
+        </div>
+
+        <div *ngIf="showSuccess" class="alert alert-success" role="alert">
+            Ваш email успішно підтверджений. Будь ласка, <a [routerLink]="['/authentication/login']"> натисніть сюди, щоб ввійти </a>.
+        </div>
+    </div>
+</div>
