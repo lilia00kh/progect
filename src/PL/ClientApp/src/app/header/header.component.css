@@ -130,7 +130,7 @@ span {
 
   .header-menu {
     grid-template-areas:
-    "logotype logout search";
+    "logotype search logout";
     grid-template-columns: 30% 40% 30%;
   }
 }  

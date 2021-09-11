@@ -54,7 +54,7 @@ namespace PL
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist/webui";
+                configuration.RootPath = "ClientApp/dist";
             });
 
             var mapperConfig = new MapperConfiguration(mc =>
@@ -125,7 +125,7 @@ namespace PL
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            if (!env.IsProduction())
+            if (env.IsProduction())
             {
                 app.UseSpaStaticFiles();
             }
@@ -148,7 +148,7 @@ namespace PL
 
                 spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsProduction())
+                if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
                 }

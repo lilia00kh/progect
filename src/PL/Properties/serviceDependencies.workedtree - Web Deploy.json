@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/workedtreedbserver/databases/workedtree_db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:ProdactionConnection",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

@@ -5,6 +5,12 @@
   <!-- <div class="phone">
     <p style="color: aliceblue;">+380983839980</p>
   </div> -->
+  <div class="search">
+    <form [formGroup]="searchForm" class="example" action="action_page.php">
+      <input formControlName="name" type="text" placeholder="Пошук..." name="search">
+      <button type="submit" (click)="search(searchForm.value)"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
   <div class="logout">
     <nav class="navbar">
       <ul class="topmenu">
@@ -34,12 +40,5 @@
         </ul>
       </ul>  
   </nav>
-  
-  </div>
-  <div class="search">
-    <form [formGroup]="searchForm" class="example" action="action_page.php">
-      <input formControlName="name" type="text" placeholder="Пошук..." name="search">
-      <button type="submit" (click)="search(searchForm.value)"><i class="fa fa-search"></i></button>
-    </form>
   </div>
 </div>

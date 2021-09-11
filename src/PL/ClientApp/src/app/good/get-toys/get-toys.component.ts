@@ -56,13 +56,13 @@ export class GetToysComponent implements OnInit {
   }
 
   public addToRecomendations=(id)=>{
-    const apiAddress = 'api/SearchAndRecomendationResponse/addRecomendation';
-    const recomendation: RecomendationDto = {
+    //const apiAddress = ;
+    const recomendation: RecomendationDto = { 
       id: "00000000-0000-0000-0000-000000000000",
       goodId: id,
       goodType: "прикраса"
     };
-    this.repository.create(apiAddress,recomendation)
+    this.repository.create('api/SearchAndRecomendationResponse/addRecomendation',recomendation)
       .subscribe(_=>{
         this.router.navigate(['/home']);
       },

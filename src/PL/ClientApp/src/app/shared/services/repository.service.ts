@@ -32,7 +32,6 @@ export class RepositoryService {
   }
 
   public createImgPath = (serverPath: string) => {
-    console.log(serverPath);
     return `${this.envUrl.urlAddress}/${serverPath}`;
   }
 
