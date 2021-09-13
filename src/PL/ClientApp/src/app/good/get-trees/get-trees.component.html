@@ -57,6 +57,9 @@
     <div *ngIf="showErrorForRecomendations" class="alert alert-danger" role="alert">
       <span [innerHTML]="errorMessageForRecomendations"></span>
     </div>
+    <div *ngIf="typeDoesNotExist" class="alert alert-danger" role="alert">
+      <span [innerHTML]="errorMessageTypeDoesNotExist"></span>
+    </div>
     <div class="gallery">
       <div class="gallery-item" *ngFor="let tree of treesForView">
         <a class="nav-link"[routerLink]="['/good/tree/order-tree',tree.id]" routerLinkActive="active"

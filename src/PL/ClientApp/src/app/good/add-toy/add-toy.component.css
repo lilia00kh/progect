@@ -9,6 +9,11 @@
     border-radius: 10px;
 }
 
+.col-form-label {
+    font-size: initial;
+    text-align: justify;
+}
+
 .row {
     text-align: center;
 }

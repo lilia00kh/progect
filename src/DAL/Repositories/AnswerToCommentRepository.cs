@@ -8,7 +8,6 @@ namespace DAL.Repositories
     {
         public AnswerToCommentRepository(ApplicationDbContext repositoryContext) : base(repositoryContext)
         {
-           // _ = repositoryContext.AnswersToComment.Include(x => x.Comment).ToList();
         }
     }
 }

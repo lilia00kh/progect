@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.EF
 {
-    public class ApplicationDbContext : IdentityDbContext<User>, Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.IDataProtectionKeyContext
+    public class ApplicationDbContext : IdentityDbContext<User>, IDataProtectionKeyContext
     {
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
@@ -15,8 +15,6 @@ namespace DAL.EF
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            //builder.ApplyConfiguration(new UserConfiguration());
-            //builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new BasketConfiguration());
         }
 
@@ -36,7 +34,6 @@ namespace DAL.EF
         public DbSet<Image> Images { get; set; }
         public DbSet<ImageAndGood> ImageAndGood { get; set; }
         public DbSet<Recomendation> Recomendations { get; set; }
-
         public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
     }
 }

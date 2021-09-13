@@ -16,7 +16,6 @@ namespace PL.Controllers
     public class TreeController : ControllerBase
     {
         private readonly ITreeService _treeService;
-        private readonly ILoggerManager _logger;
 
         public TreeController(ITreeService treeService)
         {
@@ -64,6 +63,7 @@ namespace PL.Controllers
         {
             try
             {
+                treeModel.TreeType = treeModel.TreeType.ToLower();
                 if (!Validator.TreeTypeValidator(treeModel.TreeType))
                     return BadRequest("Ялинок такого типу немає");
                 Validator.TreeValidator(treeModel);
@@ -126,6 +126,7 @@ namespace PL.Controllers
         {
             try
             {
+                treeModel.TreeType = treeModel.TreeType.ToLower();
                 if (!Validator.TreeTypeValidator(treeModel.TreeType))
                     return BadRequest("Ялинок такого типу немає");
                 Validator.TreeValidator(treeModel);
@@ -177,14 +178,12 @@ namespace PL.Controllers
                 await _treeService.DeleteTreePriceAndSizeAsync(id);
                 return Ok();
             }
-            catch (CustomException ex)
+            catch (CustomException)
             {
-                _logger.LogError($"Something went wrong in the {nameof(BLL.Services.TreeService.DeleteTreeAsync)} action {ex}");
                 return StatusCode(500, "Internal server error, you can`t delete tree price and size that does not exist");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError($"Something went wrong in the {nameof(DeleteTree)} action {ex}");
                 return StatusCode(500, "Internal server error");
             }
 
@@ -199,14 +198,12 @@ namespace PL.Controllers
                 await _treeService.DeleteTreeAsync(id);
                 return Ok();
             }
-            catch (CustomException ex)
+            catch (CustomException)
             {
-                _logger.LogError($"Something went wrong in the {nameof(BLL.Services.TreeService.DeleteTreeAsync)} action {ex}");
                 return StatusCode(500, "Internal server error, you can`t delete tree that doesn`t exist");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError($"Something went wrong in the {nameof(DeleteTree)} action {ex}");
                 return StatusCode(500, "Internal server error");
             }
 
@@ -234,23 +231,5 @@ namespace PL.Controllers
                 return StatusCode(500, "Внутрішня серверна помилка");
             }
         }
-
-        //    [HttpGet ("GetTreesByFilter")]
-        //    public async Task<IActionResult> GetTreesByFilter(FilterDto filterDto,string treeType)
-        //    {
-        //        try
-        //        {
-        //            var treeTypeToLower = treeType.ToLower();
-        //            if (!Validator.TreeTypeValidator(treeTypeToLower))
-        //                return BadRequest("Ялинок такого типу немає");
-        //            var trees = await _treeService.GetAllTreesByFilterAsync(filterDto);
-        //            return Ok(Mapper.MapTreeModelList(trees, treeTypeToLower));
-        //        }
-        //        catch (Exception)
-        //        {
-        //            return StatusCode(500, "Internal server error");
-        //        }
-        //    }
-        //}
     }
 }

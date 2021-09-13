@@ -4,7 +4,6 @@ using AutoMapper;
 using BLL.EntitiesDTO;
 using BLL.Infrastracture;
 using BLL.Interfaces;
-using BLL.JwtFeatures;
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,15 +17,12 @@ namespace PL.Controllers
     {
         private readonly UserManager<User> _userManager;
         private IMapper _mapper;
-        private readonly JwtHandler _jwtHandler;
         private readonly IAuthService _authService;
-        private readonly ILoggerManager _logger;
 
-        public AccountsController(IAuthService authService,UserManager<User> userManager, IMapper mapper, JwtHandler jwtHandler)
+        public AccountsController(IAuthService authService,UserManager<User> userManager, IMapper mapper)
         {
             _userManager = userManager;
             _mapper = mapper;
-            _jwtHandler = jwtHandler;
             _authService = authService;
         }
 
@@ -49,7 +45,7 @@ namespace PL.Controllers
                 await _authService.Registration(user);
                 return StatusCode(201);
             }
-            catch (CustomException e)
+            catch (CustomException)
             {
                 return BadRequest("Користувач вже зареєстрований");
             }

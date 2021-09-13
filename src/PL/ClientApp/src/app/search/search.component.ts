@@ -60,16 +60,16 @@ export class SearchComponent implements OnInit {
     this.showTrees = true;
     this.showError = false;
     this.searchName = this.route.snapshot.paramMap.get('name')!;
-    if(this.searchName==''){
+    if(this.searchName.length==0){
       this.showError = true;
-          this.errorMessage = "Введіть назву товару.";
-          return;
+      this.errorMessage = "Введіть назву товару.";
+      return;
   }
     const apiAddress = 'api/SearchAndRecomendationResponse/SearchByName?name='+this.searchName;
     this.repository.getData(apiAddress)
       .subscribe(res => {
         this.searchRes = res as SearchAndRecomendationResponseModel;
-        if(this.searchRes.trees==null&&this.searchRes.toys==null)
+        if(this.searchRes.trees.length==0&&this.searchRes.toys.length==0)
         {
           this.showTrees = false;
           this.showToys = false;

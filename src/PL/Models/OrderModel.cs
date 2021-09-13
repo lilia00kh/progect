@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PL.Models
 {
     public class OrderModel
     {
-        //public Guid Id { get; set; }
         public string User { get; set; }
 
         [Required(ErrorMessage = "Email is a required field.")]

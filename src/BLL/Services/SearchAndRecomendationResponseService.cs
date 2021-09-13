@@ -23,9 +23,16 @@ namespace BLL.Services
         public async Task<SearchAndRecomendationResponseDto> SearchByName(string name)
         {
             var trees = await GetAllTreesAsync();
-            var treesDtoForSerch = trees.Where(x => x.Name.ToLower().Contains(name)).ToList();
+            List<TreeDto> treesDtoForSerch = new List<TreeDto>();
+            if (trees.Any()) {
+                treesDtoForSerch = trees.Where(x => x.Name.ToLower().Contains(name)).ToList();
+            }
             var toys = await GetAllToysAsync();
-            var toysDtoForSerch = toys.Where(x => x.Name.ToLower().Contains(name)).ToList();
+            List<ToyDto> toysDtoForSerch = new List<ToyDto>();
+            if (toys.Any())
+            {
+                toysDtoForSerch = toys.Where(x => x.Name.ToLower().Contains(name)).ToList();
+            }
             return new SearchAndRecomendationResponseDto()
             {
                 Toys = toysDtoForSerch,
@@ -66,11 +73,11 @@ namespace BLL.Services
             return _mapper.Map<IEnumerable<TreeSizeAndPrice>, IEnumerable<TreeSizeAndPriceDto>>(treeSizeAndPrice);
         }
 
+
+
         public async Task<IEnumerable<ToyDto>> GetAllToysAsync()
         {
             var toys = await _database.Toy.GetAllToysAsync();
-            if (toys.Count() == 0)
-                throw new CustomException("Список прикрас порожній", "");
             var toyDtos = _mapper.Map<IEnumerable<Toy>, IEnumerable<ToyDto>>(toys);
             foreach (var toy in toyDtos)
             {

@@ -20,7 +20,6 @@ namespace PL
                 UserConfiguration.SeedData(userManager, roleManager);
             }
             host.Run();
-            //CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -28,7 +27,6 @@ namespace PL
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    //webBuilder.UseWebRoot("StaticFiles");
                 });
     }
 }

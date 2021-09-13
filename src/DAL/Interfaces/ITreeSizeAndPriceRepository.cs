@@ -11,7 +11,6 @@ namespace DAL.Interfaces
         Task CreateTreeSizeAndPriceAsync(TreeSizeAndPrice treeSizeAndPrice);
 
         Task<IQueryable<TreeSizeAndPrice>> GetAllTreeSizesAndPricesAsync(Guid id);
-        //Task<IEnumerable<Size>> GetAllSizesAsync();
         Task<TreeSizeAndPrice> FindByIdAsync(Guid id);
         Task<IEnumerable<TreeSizeAndPrice>> FindByTreeIdAsync(Guid id);
         Task<IEnumerable<TreeSizeAndPrice>> FindByTreeIdWithDetailsAsync(Guid id);

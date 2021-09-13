@@ -7,7 +7,6 @@ using BLL.EntitiesDTO;
 using BLL.Interfaces;
 using BLL.JwtFeatures;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PL.Models;
 using BLL.Infrastracture;
@@ -15,20 +14,15 @@ using BLL.Infrastracture;
 namespace PL.Controllers
 {
     [Route("api/orders")]
-    //[Authorize]
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private readonly ILoggerManager _logger;
         private IMapper _mapper;
-        private readonly JwtHandler _jwtHandler;
         private readonly IOrderService _orderService;
 
-        public OrdersController(IOrderService orderService, ILoggerManager logger, IMapper mapper, JwtHandler jwtHandler)
+        public OrdersController(IOrderService orderService, IMapper mapper)
         {
-            _logger = logger;
             _mapper = mapper;
-            _jwtHandler = jwtHandler;
             _orderService = orderService;
         }
 
@@ -45,12 +39,10 @@ namespace PL.Controllers
             }
             catch (CustomException ex)
             {
-                _logger.LogError($"Something went wrong in the {nameof(_orderService.GetAllOrdersAsynk)} action {ex}");
                 return StatusCode(200, ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError($"Something went wrong in the {nameof(_orderService.GetAllOrdersAsynk)} action {ex}");
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -67,12 +59,10 @@ namespace PL.Controllers
             }
             catch (CustomException ex)
             {
-                _logger.LogError($"Something went wrong in the {nameof(_orderService.GetAllOrdersAsynk)} action {ex}");
                 return StatusCode(200, ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError($"Something went wrong in the {nameof(_orderService.GetAllOrdersAsynk)} action {ex}");
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -86,9 +76,8 @@ namespace PL.Controllers
                 await _orderService.DeleteOrderById(id);
                 return Ok();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError($"Something went wrong in the {nameof(DeleteOrder)} action {ex}");
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -138,9 +127,8 @@ namespace PL.Controllers
                 }
                 return Ok();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError($"Something went wrong in the {nameof(AddOrder)} action {ex}");
                 return StatusCode(500, "Internal server error");
             }
         }

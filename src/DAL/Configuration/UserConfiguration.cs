@@ -55,29 +55,5 @@ namespace DAL.Configuration
                 _ = roleManager.CreateAsync(role).Result;
             }
         }
-        //public static void Configure(UserManager<User> userManager)
-        //{
-        //    if (userManager.FindByNameAsync("grinch.in.ua@ukr.net").Result == null)
-        //    {
-        //        var user = new User
-        //        {
-        //            FirstName = "Ярослав",
-        //            LastName = "Макітра",
-        //            Email = "grinch.in.ua@ukr.net",
-        //            NormalizedEmail = "GRINCH.IN.UA@UKR.NET",
-        //            UserName = "grinch.in.ua@ukr.net",
-        //            NormalizedUserName = "GRINCH.IN.UA@UKR.NET",
-        //            EmailConfirmed = true,
-        //            PhoneNumber = "+380983839980"
-        //        };
-
-        //        IdentityResult result = userManager.CreateAsync(user, "15795218").Result;
-
-        //        if (result.Succeeded)
-        //        {
-        //            userManager.AddToRoleAsync(user, "Administrator").Wait();
-        //        }
-        //    }
-        //}
     }
 }

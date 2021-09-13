@@ -10,3 +10,8 @@ img {
     background-color: #edf0f3b8;
     border-radius: 10px;
 }
+
+.col-form-label {
+    font-size: initial;
+    text-align: justify;
+}

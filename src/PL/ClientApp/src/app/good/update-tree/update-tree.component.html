@@ -1,9 +1,6 @@
 <div class="card">
     <div>
       <h1 class="card-title">Оновити ялинку</h1>
-      <div class="row" *ngIf="showError" class="alert alert-danger" role="alert">
-        <span [innerHTML]="errorMessage"></span>
-      </div>
       <app-upload (onUploadFinished)="uploadFinished($event)" (deleteFinished)="deleteImg($event)"></app-upload>
       <div class="img-upload" *ngFor="let image of imagesFromDB">
         <td>
@@ -39,7 +36,7 @@
           </div>
         </div>
         <div *ngFor="let priceAndSizeModel of priceAndSizeModels">
-          Ціна: {{priceAndSizeModel.price}} , розмір: {{priceAndSizeModel.size}}
+          <label>Ціна: {{priceAndSizeModel.price}} , розмір: {{priceAndSizeModel.size}}</label>
           <button type="button" class="btn btn-secondary btn-lg" (click)="deletePriceAndSize(priceAndSizeModel.id)">Видалити</button>
         </div>
         <!-- <div formArrayName="price"> -->
@@ -57,7 +54,10 @@
             </select>
           </div>
           <button type="button" class="btn btn-secondary btn-lg" (click)="addPriceAndSize(updateTreeForm.value)">+ Додати ще один розмір та ціну</button>
-        <br>
+          <div class="row" *ngIf="showError" class="alert alert-danger" role="alert">
+            <span [innerHTML]="errorMessage"></span>
+          </div>
+          <br>
         <div class="form-group row">
           <div class="col-md-1">
             <button type="button" class="btn btn-secondary btn-lg" (click)="updateTree(updateTreeForm.value)" [disabled]="!updateTreeForm.valid">Оновити</button>

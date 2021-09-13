@@ -1,5 +1,4 @@
 ﻿using System;
-using DAL.Configuration;
 using DAL.EF;
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -7,8 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
-using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
 
 namespace DAL
 {
@@ -31,7 +28,6 @@ namespace DAL
 
             services.Configure<DataProtectionTokenProviderOptions>(opt =>
                 opt.TokenLifespan = TimeSpan.FromHours(2));
-            // var con = configuration.GetConnectionString("ProdactionConnection");
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("ProdactionConnection")));
             services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate();

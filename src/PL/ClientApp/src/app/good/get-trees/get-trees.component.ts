@@ -48,6 +48,8 @@ export class GetTreeComponent implements OnInit {
   sizes: number[];
   treesForView: TreeModel[];
   isEmpty: boolean;
+  typeDoesNotExist: boolean;
+  errorMessageTypeDoesNotExist: string;
 
   constructor(private repository: RepositoryService,    
     private route: ActivatedRoute,
@@ -156,10 +158,11 @@ export class GetTreeComponent implements OnInit {
     this.isEmpty = false;
     this.showErrorForRecomendations = false;
     this.showError = false;
+    this.typeDoesNotExist = false;
     this.treeType = this.route.snapshot.paramMap.get('treeType')!;
     if(this.treeType != "литі" && this.treeType != "комбіновані" && this.treeType != "з плівки ПВХ" && this.treeType != "засніжені" && this.treeType != "all"){
-      this.showError = true;
-      this.errorMessage = "Таких ялинок немає";
+      this.typeDoesNotExist = true;
+      this.errorMessageTypeDoesNotExist = "Ялинок такого типу немає";
       return;
     }
     const apiAddress = 'api/trees?treeType='+this.treeType;

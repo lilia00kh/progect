@@ -2,12 +2,9 @@
 using System.Threading.Tasks;
 using BLL.EntitiesDTO;
 using BLL.Interfaces;
-using BLL.JwtFeatures;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using BLL.Infrastracture;
 using PL.Models;
-using System.Collections.Generic;
 using PL.Mapping;
 
 namespace PL.Controllers
@@ -16,14 +13,10 @@ namespace PL.Controllers
     [ApiController]
     public class SearchAndRecomendationResponseController : ControllerBase
     {
-        private readonly ILoggerManager _logger;
-        private readonly JwtHandler _jwtHandler;
         private readonly ISearchAndRecomendationResponseService _searchAndRecomendationResponseService;
 
-        public SearchAndRecomendationResponseController(ISearchAndRecomendationResponseService searchAndRecomendationResponseService, ILoggerManager logger, JwtHandler jwtHandler)
+        public SearchAndRecomendationResponseController(ISearchAndRecomendationResponseService searchAndRecomendationResponseService)
         {
-            _logger = logger;
-            _jwtHandler = jwtHandler;
             _searchAndRecomendationResponseService = searchAndRecomendationResponseService;
         }
 
@@ -60,7 +53,7 @@ namespace PL.Controllers
             {
                 return BadRequest(e.Message);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500, "Внутрішня серверна помилка");
             }

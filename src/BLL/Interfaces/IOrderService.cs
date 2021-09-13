@@ -1,7 +1,6 @@
 ﻿using BLL.EntitiesDTO;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.Interfaces
@@ -13,9 +12,6 @@ namespace BLL.Interfaces
         Task<Guid> CreateDeliveryAsynk(DeliveryDto deliveryDto);
         Task<Guid> CreateDetailsAboutDeliveryAsynk(DetailsAboutDeliveryDto detailsAboutDeliveryDto);
         Task<Guid> CreateOrderDeliveryDetailsAboutGoodPaymentAsynk(OrderDeliveryDetailsAboutGoodPaymentDto orderDeliveryDetailsAboutGoodPaymentDto);
-        //Task AddOrderAsynk(OrderDto orderDto);
-        //Task ChangeOrderStatusAsynk(Guid id, string status, bool isAdmin);
-        //Task RefuseOrderStatusAsynk(Guid id);
         Task<IEnumerable<OrderDto>> GetAllOrdersAsynk(bool isAdmin, string userName);
         Task<Guid> CreateDetailsAboutGoodAsync(DetailsAboutGoodDto detailsAboutGoodDto);
         Task<OrderDeliveryDetailsAboutGoodPaymentDto> GetOrderDeliveryDetailsAboutGoodPaymentDtoByOrderIdAsynk(Guid orderId);

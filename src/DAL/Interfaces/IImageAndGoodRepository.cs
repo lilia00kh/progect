@@ -1,5 +1,4 @@
-﻿
-using DAL.Entities;
+﻿using DAL.Entities;
 
 namespace DAL.Interfaces
 {

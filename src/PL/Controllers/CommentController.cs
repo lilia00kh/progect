@@ -15,7 +15,6 @@ namespace PL.Controllers
     public class CommentController : ControllerBase
     {
         private readonly ICommentService _commentService;
-        private readonly ILoggerManager _logger;
 
         public CommentController(ICommentService commentService)
         {
@@ -102,14 +101,12 @@ namespace PL.Controllers
                 await _commentService.DeleteCommentAsync(id);
                 return Ok();
             }
-            catch (CustomException ex)
+            catch (CustomException)
             {
-                _logger.LogError($"Something went wrong in the {nameof(BLL.Services.CommentService.DeleteCommentAsync)} action {ex}");
                 return StatusCode(500, "Internal server error, you can`t delete comment that does not exist");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError($"Something went wrong in the {nameof(DeleteComment)} action {ex}");
                 return StatusCode(500, "Internal server error");
             }
 
@@ -124,14 +121,12 @@ namespace PL.Controllers
                 await _commentService.DeleteAnswerToCommentAsync(id);
                 return Ok();
             }
-            catch (CustomException ex)
+            catch (CustomException)
             {
-                _logger.LogError($"Something went wrong in the {nameof(BLL.Services.TreeService.DeleteTreeAsync)} action {ex}");
                 return StatusCode(500, "Internal server error, you can`t delete comment that doesn`t exist");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError($"Something went wrong in the {nameof(DeleteAnswerToComment)} action {ex}");
                 return StatusCode(500, "Internal server error");
             }
 

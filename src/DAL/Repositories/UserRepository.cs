@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 using DAL.EF;
 using DAL.Entities;
@@ -32,10 +28,6 @@ namespace DAL.Repositories
         {
             return await userManager.IsEmailConfirmedAsync(user);
         }
-        public void Create(User entity)
-        {
-            
-        }
         public async Task AddRoleForNewUser(User entity)
         {
 
@@ -55,7 +47,6 @@ namespace DAL.Repositories
             return await userManager.AddToRoleAsync(entity, "Administrator");
         }
 
-
         public async Task<string> GeneratePasswordResetTokenAsync(User user)
         {
             return await userManager.GeneratePasswordResetTokenAsync(user);
@@ -64,21 +55,7 @@ namespace DAL.Repositories
         public async Task<IdentityResult> ResetPasswordAsync(User user, string token, string password)
         {
             return await userManager.ResetPasswordAsync(user, token, password);
-        }
-        public void Delete(User entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<User> FindAll(bool trackChanges)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<User> FindByCondition(Expression<Func<User, bool>> expression, bool trackChanges)
-        {
-            throw new NotImplementedException();
-        }
+        }        
 
         public async Task Update(User entity)
         {

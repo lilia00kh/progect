@@ -1,9 +1,6 @@
 ﻿using PL.Models;
 using BLL.Infrastracture;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace PL.Validations
 {
@@ -29,7 +26,7 @@ namespace PL.Validations
 
         public static bool TreeTypeValidator(string treeType)
         {
-            if (treeType == "литі" || treeType == "комбіновані" || treeType == "з плівки ПВХ" || treeType == "засніжені" || treeType == "all")
+            if (treeType == "литі" || treeType == "комбіновані" || treeType == "з плівки пвх" || treeType == "засніжені" || treeType == "all")
             {
                 return true;
             }

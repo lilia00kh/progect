@@ -12,6 +12,11 @@
     align-items: center;
 }
 
+.col-form-label {
+    font-size: initial;
+    text-align: justify;
+}
+
 img {
     margin: 10px 10px 10px 0px;
     object-fit: cover;

@@ -14,6 +14,11 @@
     border-radius: 20px;
 }
 
+.col-form-label {
+    margin-left: 5px;
+    font-size: initial;
+}
+
 .spinner {
     justify-content: center;
 }
@@ -48,11 +53,11 @@ button {
     margin: 10px 20px;
 }
 
-p, label {
+/* p, label {
     font-size: larger;
     word-wrap:break-word;
     overflow-x:hidden;
-}
+} */
 
 @media (min-width: 320px) and (max-width: 699px) {
     

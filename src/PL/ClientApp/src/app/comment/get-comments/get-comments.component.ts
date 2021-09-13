@@ -30,7 +30,7 @@ export class GetCommentsComponent implements OnInit {
   public errorMessage = '';
   public showError: boolean;
   public isAnswerToComment: boolean;
-  public isAnswerToCommentId: string;
+  public AnswerToCommentId: string;
   spin: boolean;
   isEmpty: boolean;
 
@@ -80,11 +80,24 @@ export class GetCommentsComponent implements OnInit {
     return [day, month,year ].join('/') +' ' + [hour, minutes].join(':');
 }
 
+public editText =(text)=>{
+  return text.split('\n');
+}
+
+
   public getComments = () => {
+    this.isAnswerToComment = false;
     const apiAddress = 'api/comments';
     this.repository.getData(apiAddress)
       .subscribe(res => {
         this.comments = res as CommentModel[];
+        this.comments.forEach(element => {
+          element.text = this.editText(element.text);
+          element.answerToCommentModels.forEach(answer=>{
+            answer.text = this.editText(answer.text);
+          })
+          console.log(element.text);
+        });
         this.spin = false;
         if(this.comments.length==0)
         {
@@ -98,10 +111,11 @@ export class GetCommentsComponent implements OnInit {
   {
     this.isEmpty=false;
     this.isAnswerToComment = true;
-    this.isAnswerToCommentId = id;
+    this.AnswerToCommentId = id;
   }
 
-  public addAnswerToComment=(AnswerToCommentText:string, id:string) => {
+  public addAnswerToComment=(addAnswerFormValue) => {
+    this.isAnswerToComment = false;
     if(!this.isUserAuthenticated)
     {
       this.showError = true;
@@ -112,12 +126,13 @@ export class GetCommentsComponent implements OnInit {
     this.showError = false;
     var currentDate = new Date();
     currentDate.toJSON();    
+    const formValues = { ...addAnswerFormValue };    
     const answerToComment: AnswerToCommentModel = {
       id: "00000000-0000-0000-0000-000000000000",
       userName: this.profileModel.email,
-      text: AnswerToCommentText,
+      text: addAnswerFormValue.text,
       date: currentDate,
-      commentId: id
+      commentId: this.AnswerToCommentId
     };
     this.repository.create('api/comments/addAnswerToComment', answerToComment)
       .subscribe(_ => {

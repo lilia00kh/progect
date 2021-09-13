@@ -17,7 +17,6 @@ namespace PL.Controllers
     public class ToyController : ControllerBase
     {
         private readonly IToyService _toyService;
-        private readonly ILoggerManager _logger;
 
         public ToyController(IToyService toyService)
         {
@@ -87,14 +86,12 @@ namespace PL.Controllers
                 await _toyService.DeleteToyAsync(id);
                 return Ok();
             }
-            catch (CustomException ex)
+            catch (CustomException)
             {
-                _logger.LogError($"Something went wrong in the {nameof(BLL.Services.ToyService.DeleteToyAsync)} action {ex}");
                 return StatusCode(500, "Internal server error, you can`t delete tree that doesn`t exist");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError($"Something went wrong in the {nameof(DeleteToy)} action {ex}");
                 return StatusCode(500, "Internal server error");
             }
 
@@ -124,37 +121,35 @@ namespace PL.Controllers
         {
             try
             {
+                Validator.ToyValidator(toyModel);
+                await _toyService.UpdateToyAsync(new ToyDto()
                 {
-                    Validator.ToyValidator(toyModel);
-                    await _toyService.UpdateToyAsync(new ToyDto()
+                    Id = toyModel.Id,
+                    Name = toyModel.Name,
+                    Description = toyModel.Description,
+                    Price = toyModel.Price
+                });
+                foreach (var image in toyModel.ImageModels)
+                {
+                    var imageExistInDB = await _toyService.ImageExistInDB(image.ImageName);
+                    if (!imageExistInDB)
                     {
-                        Id = toyModel.Id,
-                        Name = toyModel.Name,
-                        Description = toyModel.Description,
-                        Price = toyModel.Price
-                    });
-                    foreach (var image in toyModel.ImageModels)
-                    {
-                        var imageExistInDB = await _toyService.ImageExistInDB(image.ImageName);
-                        if (!imageExistInDB)
+                        var id = await _toyService.CreateImageAsync(new ImageDto()
                         {
-                            var id = await _toyService.CreateImageAsync(new ImageDto()
-                            {
-                                ImageName = image.ImageName,
-                                ImagePath = image.ImagePath
-                            });
-                            await _toyService.CreateImageAndGoodAsync(new ImageAndGoodDto()
-                            {
-                                ImageId = id,
-                                GoodId = toyModel.Id
-                            });
-                        }
-
+                            ImageName = image.ImageName,
+                            ImagePath = image.ImagePath
+                        });
+                        await _toyService.CreateImageAndGoodAsync(new ImageAndGoodDto()
+                        {
+                            ImageId = id,
+                            GoodId = toyModel.Id
+                        });
                     }
 
-
-                    return Ok();
                 }
+
+
+                return Ok();
             }
             catch (CustomException ex)
             {

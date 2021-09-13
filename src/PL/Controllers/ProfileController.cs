@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BLL.EntitiesDTO;
 using BLL.Interfaces;
-using BLL.JwtFeatures;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using BLL.Infrastracture;
@@ -16,16 +15,12 @@ namespace PL.Controllers
     [ApiController]
     public class ProfileController : ControllerBase
     {
-        private readonly ILoggerManager _logger;
         private IMapper _mapper;
-        private readonly JwtHandler _jwtHandler;
         private readonly IProfileService _profileService;
 
-        public ProfileController(IProfileService profileService, ILoggerManager logger, IMapper mapper, JwtHandler jwtHandler)
+        public ProfileController(IProfileService profileService, IMapper mapper)
         {
-            _logger = logger;
             _mapper = mapper;
-            _jwtHandler = jwtHandler;
             _profileService = profileService;
         }
 
@@ -47,12 +42,10 @@ namespace PL.Controllers
             }
             catch (CustomException ex)
             {
-                _logger.LogError($"Something went wrong in the {nameof(_profileService.GetProfileData)} action {ex}");
                 return StatusCode(200, ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError($"Something went wrong in the {nameof(_profileService.GetProfileData)} action {ex}");
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -70,17 +63,14 @@ namespace PL.Controllers
             {
                 var profileDto = _mapper.Map<ProfileDto>(profileModel);
                 await _profileService.UpdateProfileData(profileDto);
-                //var profileModel = _mapper.Map<ProfileModel>(profileDto);
                 return Ok();
             }
             catch (CustomException ex)
             {
-                _logger.LogError($"Something went wrong in the {nameof(_profileService.GetProfileData)} action {ex}");
                 return StatusCode(200, ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError($"Something went wrong in the {nameof(_profileService.GetProfileData)} action {ex}");
                 return StatusCode(500, "Internal server error");
             }
         }

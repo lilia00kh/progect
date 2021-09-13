@@ -1,10 +1,6 @@
 <div class="card">
     <div class="card-body">
       <h1 class="card-title">Додати прикрасу</h1>
-  
-      <div *ngIf="showError" class="alert alert-danger" role="alert">
-        <span [innerHTML]="errorMessage"></span>
-      </div>
       <app-upload (onUploadFinished)="uploadFinished($event)" (deleteFinished)="deleteImg($event)"></app-upload>
       <form [formGroup]="addToyForm" autocomplete="off" novalidate >
         <div class="form-group row">
@@ -24,6 +20,9 @@
           <div class="col-md-5">
             <input id="price" type="number" formControlName="price" class="form-control"/>
           </div>
+        </div>
+        <div *ngIf="showError" class="alert alert-danger" role="alert">
+          <span [innerHTML]="errorMessage"></span>
         </div>
         <br>
         <div class="form-group row">

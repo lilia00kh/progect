@@ -397,7 +397,7 @@ this.showOrderForm = true;
       this.errorMessage = "Будь ласка, заповніть всі необхідні поля"
       return;
     }
-
+    this.spin = true;
     this.phoneError = false;
     this.showFormError = false;
     const formValues = { ...formValue };
@@ -416,14 +416,7 @@ this.showOrderForm = true;
     deliveries.push(delivery);
     var payments = Array();
     payments.push(payment);
-    // if(this.trees==undefined)
-    // {
-      this.toys = [];      
-    // }
-    // if(this.toys==undefined)
-    // {
-    //   this.toys = [];      
-    // }
+    this.toys = [];      
 
     const tree: TreeForBasketModel = {
       id:"00000000-0000-0000-0000-000000000000",

@@ -22,8 +22,5 @@ namespace PL.Models
         [Required(ErrorMessage = "Count is required fields.")]
         public int Count { get; set; }
         public List<ImageModel> ImageModels { get; set; }
-
-        //[Required(ErrorMessage = "Type of good is required fields.")]
-        //public string TypeOfGood { get; set; }
     }
 }

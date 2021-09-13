@@ -217,22 +217,6 @@ export class OrderToyComponent implements OnInit {
     this.showOrderForm=true;
      const formValues = { ...getToyByIdFormValue };
      this.countForOrder = formValues.count;
-    // const toyForBasketModel: ToyForBasketModel = {
-    //   id: "00000000-0000-0000-0000-000000000000",
-    //   toyId: this.id,
-    //   name: this.name,
-    //   price:  this.priceForForm,
-    //   count: formValues.count,
-    // };
-    // const navigationExtrasForToy: NavigationExtras = {
-    //   state: {
-    //     toyForBasketModel: toyForBasketModel,
-    //     treeForBasketModel: null,
-    //     typeOfGood: "toy"
-    //   }
-    // };
-    
-    // this.router.navigate(['/order/order-from-basket'], navigationExtrasForToy);
   }
 
   onChangeDelivery(delivery) {
@@ -340,6 +324,7 @@ export class OrderToyComponent implements OnInit {
       this.errorMessage = "Будь ласка, заповніть всі необхідні поля"
       return;
     }
+    this.spin = true;
     this.phoneError = false;
     this.showFormError = false;
     const formValues = { ...formValue };

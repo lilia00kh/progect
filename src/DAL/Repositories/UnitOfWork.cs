@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DAL.EF;
+﻿using DAL.EF;
 using DAL.Entities;
 using DAL.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -29,7 +26,6 @@ namespace DAL.Repositories
         private ImageRepository _imageRepository;
         private ImageAndGoodRepository _imageAndGoodRepository;
         private RecomendationRepository _recomendationRepository;
-        private readonly UserManager<User> _userManager;
 
         public UnitOfWork(ApplicationDbContext repositoryContext)
         {

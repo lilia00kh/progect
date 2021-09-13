@@ -76,7 +76,7 @@ namespace BLL.Services
         public async Task<IEnumerable<ToyDto>> GetAllToysAsync()
         {
             var toys = await _database.Toy.GetAllToysAsync();
-            if (toys.Count() == 0)
+            if (toys.Any())
                 throw new CustomException("Список прикрас порожній", "");
             var toyDtos = _mapper.Map<IEnumerable<Toy>, IEnumerable<ToyDto>>(toys);
             foreach (var toy in toyDtos)

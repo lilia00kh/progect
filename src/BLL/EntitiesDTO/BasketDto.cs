@@ -9,9 +9,6 @@ namespace BLL.EntitiesDTO
         [Column("BasketId")]
         public Guid Id { get; set; }
         public string UserName { get; set; }
-        //public List<Guid> GoodIds { get; set; }
-        //public List<TreeDto> Trees { get; set; }
-        //public List<ToyDto> Toys { get; set; }
 
     }
 }
