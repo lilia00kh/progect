@@ -23,7 +23,7 @@ export class AddTreeComponent implements OnInit {
   public response: {dbPath: ''};
   imgPath: any;
   public images: ImageModel[] = [];
-  treeTypes = ['литі', 'комбіновані','звичайні','штучні','засніжені']; 
+  treeTypes = ['литі', 'комбіновані','з плівки ПВХ','засніжені']; 
   sizes = [0.20, 0.30, 0.40, 0.50, 0.60,0.70, 1.1, 1.2, 1.4,1.5, 1.6, 1.8, 2.1,2.2,2.4,2.5,2.7,3,3.5,4 ];
   treeType: string;
   treeColors = ['зелений', 'білий','голубий']; 

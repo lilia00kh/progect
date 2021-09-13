@@ -29,7 +29,7 @@ namespace DAL.Configuration
                     PhoneNumber = "+380983839980"
                 };
 
-                IdentityResult result = userManager.CreateAsync(user, "Lkjhgf@1203").Result;
+                IdentityResult result = userManager.CreateAsync(user, "Mulik@1234").Result;
 
                 if (result.Succeeded)
                 {

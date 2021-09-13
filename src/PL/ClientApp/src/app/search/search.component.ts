@@ -60,6 +60,11 @@ export class SearchComponent implements OnInit {
     this.showTrees = true;
     this.showError = false;
     this.searchName = this.route.snapshot.paramMap.get('name')!;
+    if(this.searchName==''){
+      this.showError = true;
+          this.errorMessage = "Введіть назву товару.";
+          return;
+  }
     const apiAddress = 'api/SearchAndRecomendationResponse/SearchByName?name='+this.searchName;
     this.repository.getData(apiAddress)
       .subscribe(res => {

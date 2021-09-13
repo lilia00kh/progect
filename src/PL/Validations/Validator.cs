@@ -29,7 +29,7 @@ namespace PL.Validations
 
         public static bool TreeTypeValidator(string treeType)
         {
-            if (treeType == "литі" || treeType == "комбіновані" || treeType == "звичайні" || treeType == "штучні" || treeType == "засніжені" || treeType == "all")
+            if (treeType == "литі" || treeType == "комбіновані" || treeType == "з плівки ПВХ" || treeType == "засніжені" || treeType == "all")
             {
                 return true;
             }

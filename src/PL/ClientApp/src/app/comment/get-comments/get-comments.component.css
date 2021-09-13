@@ -8,6 +8,10 @@
 
 .is-empty {
     margin: 20px;
+    width: fit-content;
+    background-color: #e2e2e2d2;
+    padding: 20px;
+    border-radius: 20px;
 }
 
 .spinner {

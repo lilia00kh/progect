@@ -73,6 +73,7 @@ export class GetTreeComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.isEmpty = false;
     this.getTrees();
     this.windowWidth();
     this.showError = false;
@@ -152,9 +153,15 @@ export class GetTreeComponent implements OnInit {
   }
 
   public getTrees = () => {
+    this.isEmpty = false;
     this.showErrorForRecomendations = false;
     this.showError = false;
     this.treeType = this.route.snapshot.paramMap.get('treeType')!;
+    if(this.treeType != "литі" && this.treeType != "комбіновані" && this.treeType != "з плівки ПВХ" && this.treeType != "засніжені" && this.treeType != "all"){
+      this.showError = true;
+      this.errorMessage = "Таких ялинок немає";
+      return;
+    }
     const apiAddress = 'api/trees?treeType='+this.treeType;
     this.repository.getData(apiAddress)
       .subscribe(res => {

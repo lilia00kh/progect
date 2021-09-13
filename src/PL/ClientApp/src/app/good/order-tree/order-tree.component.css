@@ -8,6 +8,14 @@
   border-radius: 10px;
 }
 
+.col-form-label {
+  margin-left: 5px;
+  font-size: initial;
+}
+
+select {
+  font-size: initial;
+}
 
 .card {
   display: grid;

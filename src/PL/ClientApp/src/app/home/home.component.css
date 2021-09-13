@@ -67,8 +67,8 @@ grid-area: tree-caption;
 
 img {
   object-fit: cover;
-  width:300px;
-  height:300px;
+  width:200px;
+  height:200px;
 }
 
 .alert-danger {
@@ -85,8 +85,9 @@ button {
 
 @media (min-width: 320px) and (max-width: 699px) {
   .toy-gallery, .tree-gallery {
-    grid-template-columns: 350px;
+    grid-template-columns: 250px;
   }
+
   nav ul {
     display: flex;
     justify-content: space-between;
@@ -95,7 +96,7 @@ button {
 
 @media (min-width: 700px) and (max-width: 1139px) {
   .toy-gallery, .tree-gallery {
-    grid-template-columns: 350px 350px; 
+    grid-template-columns: 250px 250px; 
     grid-gap: 30px;
   }
   nav ul {
@@ -122,8 +123,8 @@ button {
    }
 
    img {
-    width:300px;
-    height:300px;
+    width:200px;
+    height:200px;
   }
 }
 
@@ -133,10 +134,9 @@ button {
     grid-gap: 30px;
    }
 
-
    img {
-    width:400px;
-    height:400px;
+    width:280px;
+    height:280px;
   }
 }
 
