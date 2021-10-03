@@ -241,8 +241,8 @@ export class OrderTreeComponent implements OnInit {
     .subscribe(_ => {
         this.router.navigate(['/basket']);
       },
-      error => {
-        this.errorMessage = error;
+      err => {
+        this.errorMessage = err;
         this.showError = true;
       });
   }
@@ -264,29 +264,7 @@ export class OrderTreeComponent implements OnInit {
     const formValues = { ...getTreeByIdFormValue };
     this.countForOrder = formValues.count;
     this.showOrderForm = true;
-    // const treeForBasketModel: TreeForBasketModel = {
-    //   id: "00000000-0000-0000-0000-000000000000",
-    //   treeId: this.id,
-    //   name: this.name,
-    //   price: this.priceForForm,
-    //   count: formValues.count,
-    //   size: this.size,
-    //   color: this.color  
-    // };
-     
-    // const navigationExtrasForTree: NavigationExtras = {
-    //   state: {
-    //     treeForBasketModel: treeForBasketModel,
-    //     toyForBasketModel: null,
-    //     typeOfGood: "tree"
-    //   }
-    // };
-
-    // this.nav = navigationExtrasForTree;
-    
-    // console.log(this.nav);
-    // this.router.navigate(['/order/order-from-basket'], this.nav);
-this.showOrderForm = true;
+    this.showOrderForm = true;
   }
 
   public createImgPath = (serverPath: string) => {
@@ -397,7 +375,6 @@ this.showOrderForm = true;
       this.errorMessage = "Будь ласка, заповніть всі необхідні поля"
       return;
     }
-    this.spin = true;
     this.phoneError = false;
     this.showFormError = false;
     const formValues = { ...formValue };
@@ -434,6 +411,7 @@ this.showOrderForm = true;
       this.phoneError = true;
       return;
     }
+    this.spin=true;
     const address: string = " населений пункт: "+ formValues.city+", область: " + formValues.region;
     var currentDate = new Date();
     currentDate.toJSON();  
@@ -450,18 +428,18 @@ this.showOrderForm = true;
       payments: payments,
       date: currentDate
     };
-
     this.repository.create('api/orders/add', order)
     .subscribe(_ => {     
-    this.spin=true;
+    
       if(this.goodForBaskeyId!=null)
       {
         this.deleteGood(this.goodForBaskeyId);
       }
       this.router.navigate(['/success-order']);
       },
-      error => {
-        this.errorMessage = error;
+      err => {
+        this.spin=false;
+        this.errorMessage = err;
         this.showError = true;
       });
     }

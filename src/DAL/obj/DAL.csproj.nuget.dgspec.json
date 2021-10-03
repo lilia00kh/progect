@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lilia\\OneDrive\\Робочий стіл\\с_sharp\\проект для Ярка\\Project\\src\\DAL\\DAL.csproj": {}
+    "C:\\Users\\lilia\\source\\repos\\progect\\src\\DAL\\DAL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lilia\\OneDrive\\Робочий стіл\\с_sharp\\проект для Ярка\\Project\\src\\DAL\\DAL.csproj": {
+    "C:\\Users\\lilia\\source\\repos\\progect\\src\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lilia\\OneDrive\\Робочий стіл\\с_sharp\\проект для Ярка\\Project\\src\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\lilia\\source\\repos\\progect\\src\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\lilia\\OneDrive\\Робочий стіл\\с_sharp\\проект для Ярка\\Project\\src\\DAL\\DAL.csproj",
+        "projectPath": "C:\\Users\\lilia\\source\\repos\\progect\\src\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\lilia\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lilia\\OneDrive\\Робочий стіл\\с_sharp\\проект для Ярка\\Project\\src\\DAL\\obj\\",
+        "outputPath": "C:\\Users\\lilia\\source\\repos\\progect\\src\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lilia\\AppData\\Roaming\\NuGet\\NuGet.Config",

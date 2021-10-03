@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LvaM8VyVu2c83N/CQhVG5Xtsu8m0TwH3QK21pAr/iHBYet9MoZnryjEWeCfJFfYJ98zs8lnoh4fmbqJlYiLZbw==",
+  "dgSpecHash": "ZwZvS1ilBE95sj2tOJLbU/Dc/LXlDVBBd0VP7tpRN3xHt83LBIQG1cGABPVHGsXXcfDtAm8kA6snWEwQdTkV0Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lilia\\OneDrive\\Робочий стіл\\с_sharp\\проект для Ярка\\Project\\src\\DAL\\DAL.csproj",
+  "projectFilePath": "C:\\Users\\lilia\\source\\repos\\progect\\src\\DAL\\DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lilia\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\lilia\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

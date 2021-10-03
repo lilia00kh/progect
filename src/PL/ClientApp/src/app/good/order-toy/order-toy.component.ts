@@ -324,7 +324,6 @@ export class OrderToyComponent implements OnInit {
       this.errorMessage = "Будь ласка, заповніть всі необхідні поля"
       return;
     }
-    this.spin = true;
     this.phoneError = false;
     this.showFormError = false;
     const formValues = { ...formValue };
@@ -359,6 +358,7 @@ export class OrderToyComponent implements OnInit {
       this.phoneError = true;
       return;
     }
+    this.spin=true;
     const address: string = " населений пункт: "+ formValues.city+", область: " + formValues.region;
     var currentDate = new Date();
     currentDate.toJSON();  
@@ -378,15 +378,16 @@ export class OrderToyComponent implements OnInit {
 
     this.repository.create('api/orders/add', order)
     .subscribe(_ => {
-      this.spin=true;
+      
       if(this.goodForBaskeyId!=null)
       {
         this.deleteGood(this.goodForBaskeyId);
       }
       this.router.navigate(['/success-order']);
       },
-      error => {
-        this.errorMessage = error;
+      err => {
+        this.spin=false;
+        this.errorMessage = err;
         this.showError = true;
       });
     }

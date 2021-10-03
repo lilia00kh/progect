@@ -7,6 +7,7 @@ import { PriceAndSizeModel } from 'src/app/_interfaces/tree/priceAndSizeModel';
 import { FormBuilder } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { ImageModel } from 'src/app/_interfaces/imageModel';
+import { Guid } from 'guid-typescript';
 
 @Component({
   selector: 'app-add-tree',
@@ -24,7 +25,7 @@ export class AddTreeComponent implements OnInit {
   imgPath: any;
   public images: ImageModel[] = [];
   treeTypes = ['литі', 'комбіновані','з плівки ПВХ','засніжені']; 
-  sizes = [0.20, 0.30, 0.40, 0.50, 0.60,0.70, 1.1, 1.2, 1.4,1.5, 1.6, 1.8, 2.1,2.2,2.4,2.5,2.7,3,3.5,4 ];
+  sizes = [0.90, 1.1, 1.2, 1.4,1.5, 1.6,1.7, 1.8, 2.1,2.15,2.2,2.4,2.45,2.5,2.7,3,3.5,4 ];
   treeType: string;
   treeColors = ['зелений', 'білий','голубий']; 
   treeColor: string;
@@ -38,7 +39,7 @@ export class AddTreeComponent implements OnInit {
       { }
 
   ngOnInit() : void {
-    this.sizeForPrice=0.2;
+    this.sizeForPrice=0.9;
     this.treeColor ='';
     this.treeType =''
     this.priceAndSizeModels= new Array();
@@ -65,10 +66,10 @@ export class AddTreeComponent implements OnInit {
   }
 
   public deletePriceAndSize(id:string){
-    var result = confirm("Are you sure?");
+    var result = confirm("Впевнений,що хочеш видалити?");
 if (result) {
   var removeIndex = this.priceAndSizeModels.map(item => item.id).indexOf(id);
-  ~removeIndex && this.priceAndSizeModels.splice(removeIndex, 1);  
+  ~removeIndex && this.priceAndSizeModels.splice(removeIndex, 1);
   const apiAddress = 'api/trees/DeletePriceAndSizeById?id='+id;
   this.repository.delete(apiAddress)
     .subscribe();
@@ -204,7 +205,7 @@ if (result) {
 
     var newPriceAndSizeModel:   PriceAndSizeModel =
     {
-      id: "00000000-0000-0000-0000-000000000000",
+      id: Guid.create().toString(),
     price: formValues.price,
     size:  this.sizeForPrice
   }

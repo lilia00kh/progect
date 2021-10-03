@@ -18,7 +18,8 @@ namespace PL.Mapping
                 Description = treeDto.Description,
                 PriceAndSizeModels = priceAndSizeModels,
                 Color = treeDto.Color,
-                ImageModels = images
+                ImageModels = images,
+                TreeType = treeDto.TreeType
             };
         }
         public static List<TreeModel> MapTreeModelList(IEnumerable<TreeDto> treeDtos, string treeType)
@@ -69,7 +70,7 @@ namespace PL.Mapping
         public static SearchAndRecomendationResponseModel MapSearchAndRecomendationResponseModel(SearchAndRecomendationResponseDto searchAndRecomendationResponseDto)
         {
             var toysModel = MapToyModelList(searchAndRecomendationResponseDto.Toys);
-            var treesModel = MapTreeModelList(searchAndRecomendationResponseDto.Trees,"all");
+            var treesModel = MapTreeModelList(searchAndRecomendationResponseDto.Trees, "all");
             return new SearchAndRecomendationResponseModel()
             {
                 Trees = treesModel,

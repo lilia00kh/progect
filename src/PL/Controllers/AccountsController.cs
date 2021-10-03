@@ -31,6 +31,7 @@ namespace PL.Controllers
         {
             if (userForRegistration == null || !ModelState.IsValid)
                 return BadRequest();
+
             _mapper = new MapperConfiguration(cfg => cfg.CreateMap<UserForRegistrationDto, UserForRegistrationModel>()
             .ForMember(p => p.FirstName, c => c.MapFrom(a => a.FirstName))
                 .ForMember(p => p.LastName, c => c.MapFrom(a => a.LastName))

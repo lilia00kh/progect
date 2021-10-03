@@ -8,6 +8,7 @@ using System;
 using System.Threading.Tasks;
 using PL.Validations;
 using PL.Mapping;
+using System.Linq;
 
 namespace PL.Controllers
 {
@@ -75,11 +76,11 @@ namespace PL.Controllers
                     TreeType = treeModel.TreeType,
                     Color = treeModel.Color
                 });
-
+                var allTreeSizesAndPrices = await _treeService.GetAllTreeSizesAndPricesAsync(treeModel.Id);
                 foreach (var priceAndSizeModel in treeModel.PriceAndSizeModels)
                 {
                     var id = await _treeService.CreateSizeAsync(new SizeDto() { NameOfSize = priceAndSizeModel.Size });
-                    if (priceAndSizeModel.Id.ToString() == "00000000-0000-0000-0000-000000000000")
+                    if (!allTreeSizesAndPrices.Any(x => x.Id == priceAndSizeModel.Id))
                     {
                         await _treeService.CreateTreeSizeAndPriceAsync(new TreeSizeAndPriceDto()
                         {

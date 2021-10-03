@@ -1,69 +1,73 @@
 <div class="card">
-    <div>
-      <h1 class="card-title">Оновити ялинку</h1>
-      <app-upload (onUploadFinished)="uploadFinished($event)" (deleteFinished)="deleteImg($event)"></app-upload>
-      <div class="img-upload" *ngFor="let image of imagesFromDB">
-        <td>
-          <img [src]="createImgPath(image.imagePath)" alt="profile picture">
-          <button type="button" class="btn btn-secondary btn-lg" (click)="deleteImg(image.imagePath)">
-            Видалити зображення
-          </button>
-        </td>
-      </div>
-      <div class="row">
-        <label class="col-form-label col-sm-2">Тип ялинки:</label>
-        <select [(ngModel)]="selectedTreeType" (ngModelChange)="onChangeTreeType($event)" >
-          <option *ngFor="let p of this.treeTypes" [ngValue]="p"> {{p}} </option>
-        </select>
-      </div>
-      <div class="row">
-        <label class="col-form-label col-sm-2">Колір ялинки:</label>
-        <select [(ngModel)]="selectedTreeColor" (ngModelChange)="onChangeTreeColor($event)" >
-          <option *ngFor="let c of this.treeColors" [ngValue]="c"> {{c}} </option>
-        </select>
-      </div>
-      <form [formGroup]="updateTreeForm" autocomplete="off" novalidate >
-        <div class="form-group row">
-          <label for="name" class="col-form-label col-sm-2">Назва товару:</label>
-          <div class="col-md-5">
-            <input type="text" id="name" formControlName="name" class="form-control"/>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="description" class="col-form-label col-sm-2">Опис:</label>
-          <div class="col-md-5">
-            <textarea id="description" rows="4" cols="50"  formControlName="description" class="form-control"></textarea>
-          </div>
-        </div>
-        <div *ngFor="let priceAndSizeModel of priceAndSizeModels">
-          <label>Ціна: {{priceAndSizeModel.price}} , розмір: {{priceAndSizeModel.size}}</label>
-          <button type="button" class="btn btn-secondary btn-lg" (click)="deletePriceAndSize(priceAndSizeModel.id)">Видалити</button>
-        </div>
-        <!-- <div formArrayName="price"> -->
-          <div class="form-group row">
-            <label for="price" class="col-form-label col-sm-2">Ціна:</label>
-            <div class="col-md-5">
-              <input id="price" type="number" formControlName="price" class="form-control"/>
-            </div>
-            
-          </div>
-          <div class="form-group row">
-            <label for="size" class="col-form-label col-sm-2">Розмір:</label>
-            <select formControlName="size" >
-              <option *ngFor="let s of sizes"> {{s}} </option>
-            </select>
-          </div>
-          <button type="button" class="btn btn-secondary btn-lg" (click)="addPriceAndSize(updateTreeForm.value)">+ Додати ще один розмір та ціну</button>
-          <div class="row" *ngIf="showError" class="alert alert-danger" role="alert">
-            <span [innerHTML]="errorMessage"></span>
-          </div>
-          <br>
-        <div class="form-group row">
-          <div class="col-md-1">
-            <button type="button" class="btn btn-secondary btn-lg" (click)="updateTree(updateTreeForm.value)" [disabled]="!updateTreeForm.valid">Оновити</button>
-          </div>
-        </div>
-      </form>
+  <div>
+    <h1 class="card-title">Оновити ялинку</h1>
+    <app-upload (onUploadFinished)="uploadFinished($event)" (deleteFinished)="deleteImg($event)"></app-upload>
+    <div class="img-upload" *ngFor="let image of imagesFromDB">
+      <td>
+        <img [src]="createImgPath(image.imagePath)" alt="profile picture">
+        <button type="button" class="btn btn-secondary btn-lg" (click)="deleteImg(image.imagePath)">
+          Видалити зображення
+        </button>
+      </td>
     </div>
+    <div class="row">
+      <label class="col-form-label col-sm-2">Тип ялинки:</label>
+      <p class="default-p" *ngIf="showTreeType"> {{treeType}} </p>
+      <label class="col-form-label col-sm-2" *ngIf="showTreeType">Змінити тип:</label>
+      <select [(ngModel)]="selectedTreeType" (ngModelChange)="onChangeTreeType($event)" >
+        <option *ngFor="let p of this.treeTypes" [ngValue]="p"> {{p}} </option>
+      </select>
+    </div>
+    <div class="row">
+      <label class="col-form-label col-sm-2">Колір ялинки:</label>
+      <p class="default-p" *ngIf="showTreeColor"> {{treeColor}} </p>
+      <br>
+      <label class="col-form-label col-sm-2" *ngIf="showTreeColor">Змінити колір:</label>
+      <select [(ngModel)]="selectedTreeColor" (ngModelChange)="onChangeTreeColor($event)" >
+        <option *ngFor="let c of this.treeColors" [ngValue]="c"> {{c}} </option>
+      </select>
+    </div>
+    <form [formGroup]="updateTreeForm" autocomplete="off" novalidate >
+      <div class="form-group row">
+        <label for="name" class="col-form-label col-sm-2">Назва товару:</label>
+        <div class="col-md-5">
+          <input type="text" id="name" formControlName="name" class="form-control"/>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="description" class="col-form-label col-sm-2">Опис:</label>
+        <div class="col-md-5">
+          <textarea id="description" rows="4" cols="50"  formControlName="description" class="form-control"></textarea>
+        </div>
+      </div>
+      <div *ngFor="let priceAndSizeModel of priceAndSizeModels">
+        <label>Ціна: {{priceAndSizeModel.price}} , розмір: {{priceAndSizeModel.size}}</label>
+        <button type="button" class="btn btn-secondary btn-lg" (click)="deletePriceAndSize(priceAndSizeModel.id)">Видалити</button>
+      </div>
+      <!-- <div formArrayName="price"> -->
+        <div class="form-group row">
+          <label for="price" class="col-form-label col-sm-2">Ціна:</label>
+          <div class="col-md-5">
+            <input id="price" type="number" formControlName="price" class="form-control"/>
+          </div>
+          
+        </div>
+        <div class="form-group row">
+          <label for="size" class="col-form-label col-sm-2">Розмір:</label>
+          <select formControlName="size" >
+            <option *ngFor="let s of sizes"> {{s}} </option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-secondary btn-lg" (click)="addPriceAndSize(updateTreeForm.value)">+ Додати ще один розмір та ціну</button>
+        <div class="row" *ngIf="showError" class="alert alert-danger" role="alert">
+          <span [innerHTML]="errorMessage"></span>
+        </div>
+        <br>
+      <div class="form-group row">
+        <div class="col-md-1">
+          <button type="button" class="btn btn-secondary btn-lg" (click)="updateTree(updateTreeForm.value)" [disabled]="!updateTreeForm.valid">Оновити</button>
+        </div>
+      </div>
+    </form>
   </div>
-  
+</div>

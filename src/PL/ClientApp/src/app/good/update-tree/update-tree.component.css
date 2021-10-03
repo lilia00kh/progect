@@ -12,6 +12,10 @@
     align-items: center;
 }
 
+.default-p {
+    margin: 0px;
+}
+
 .col-form-label {
     font-size: initial;
     text-align: justify;

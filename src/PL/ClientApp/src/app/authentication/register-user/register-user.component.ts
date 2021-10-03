@@ -57,12 +57,14 @@ export class RegisterUserComponent implements OnInit {
     };
 
     this._authService.registerUser('api/accounts/registration', user)
-      .subscribe(_ => {
-          this._router.navigate(['/authentication/login']);
-        },
-        (error) => {
-          this.errorMessage = error;
-          this.showError = true;
-        });
+    .subscribe(_ => {
+      this._router.navigate(['/authentication/login']);
+    },
+    err => 
+    {
+      this.errorMessage = "Користувач зареєстрований";
+      this.showError = true;
+    }
+    );
   }
 }

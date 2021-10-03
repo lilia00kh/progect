@@ -10,3 +10,15 @@ C:\Users\lilia\OneDrive\Робочий стіл\с_sharp\проект для Я�
 C:\Users\lilia\OneDrive\Робочий стіл\с_sharp\проект для Ярка\Project\src\DAL\bin\Debug\netcoreapp3.1\DAL.pdb
 C:\Users\lilia\OneDrive\Робочий стіл\с_sharp\проект для Ярка\Project\src\DAL\obj\Debug\netcoreapp3.1\DAL.genruntimeconfig.cache
 C:\Users\lilia\OneDrive\Робочий стіл\с_sharp\проект для Ярка\Project\src\DAL\obj\Debug\netcoreapp3.1\DAL.csproj.AssemblyReference.cache
+C:\Users\lilia\Source\Repos\progect\src\DAL\bin\Debug\netcoreapp3.1\DAL.deps.json
+C:\Users\lilia\Source\Repos\progect\src\DAL\bin\Debug\netcoreapp3.1\DAL.runtimeconfig.json
+C:\Users\lilia\Source\Repos\progect\src\DAL\bin\Debug\netcoreapp3.1\DAL.runtimeconfig.dev.json
+C:\Users\lilia\Source\Repos\progect\src\DAL\bin\Debug\netcoreapp3.1\DAL.dll
+C:\Users\lilia\Source\Repos\progect\src\DAL\bin\Debug\netcoreapp3.1\DAL.pdb
+C:\Users\lilia\Source\Repos\progect\src\DAL\obj\Debug\netcoreapp3.1\DAL.csproj.AssemblyReference.cache
+C:\Users\lilia\Source\Repos\progect\src\DAL\obj\Debug\netcoreapp3.1\DAL.AssemblyInfoInputs.cache
+C:\Users\lilia\Source\Repos\progect\src\DAL\obj\Debug\netcoreapp3.1\DAL.AssemblyInfo.cs
+C:\Users\lilia\Source\Repos\progect\src\DAL\obj\Debug\netcoreapp3.1\DAL.csproj.CoreCompileInputs.cache
+C:\Users\lilia\Source\Repos\progect\src\DAL\obj\Debug\netcoreapp3.1\DAL.dll
+C:\Users\lilia\Source\Repos\progect\src\DAL\obj\Debug\netcoreapp3.1\DAL.pdb
+C:\Users\lilia\Source\Repos\progect\src\DAL\obj\Debug\netcoreapp3.1\DAL.genruntimeconfig.cache

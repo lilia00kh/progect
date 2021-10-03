@@ -6,6 +6,7 @@ import { FormBuilder } from '@angular/forms';
 import { FormGroup} from '@angular/forms';
 import { PriceAndSizeModel } from '../../_interfaces/tree/priceAndSizeModel';
 import { ImageModel } from 'src/app/_interfaces/imageModel';
+import { Guid } from "guid-typescript";
 
 
 @Component({
@@ -25,10 +26,12 @@ export class UpdateTreeComponent implements OnInit {
   public imagesThatHaveToDeleteInDB: ImageModel[] = [];
   treeType: string;
   treeTypes = ['литі', 'комбіновані','з плівки ПВХ','засніжені']; 
-  sizes = [0.20, 0.30, 0.40, 0.50, 0.60,0.70, 1.1, 1.2, 1.4,1.5, 1.6, 1.8, 2.1,2.2,2.4,2.5,2.7,3,3.5,4 ];
+  sizes = [0.90, 1.1, 1.2, 1.4,1.5, 1.6,1.7, 1.8, 2.1,2.15,2.2,2.4,2.45,2.5,2.7,3,3.5,4 ];
   treeColors = ['зелений', 'білий','голубий']; 
   treeColor: string;
   sizeForPrice: number;
+  showTreeType: boolean;
+  showTreeColor: boolean;
   
 
   constructor(
@@ -39,7 +42,9 @@ export class UpdateTreeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.sizeForPrice=0.2;
+    this.showTreeType=true;    
+    this.showTreeColor=true;
+    this.sizeForPrice=0.9;
     this.treeType ='';
     this.treeColor ='';
     this.id = this.route.snapshot.paramMap.get('id')!;
@@ -57,10 +62,12 @@ export class UpdateTreeComponent implements OnInit {
   // }
 
   onChangeTreeType(treeType) {
+  this.showTreeType=false;
     this.treeType = treeType;
   }
 
   onChangeTreeColor(treeColor) {
+    this.showTreeColor=false;
     this.treeColor = treeColor;
   }
 
@@ -69,6 +76,8 @@ export class UpdateTreeComponent implements OnInit {
     this.repository.getData(apiAddress)
       .subscribe(res => {
         this.tree = res as TreeModel;
+        this.treeType = this.tree.treeType;
+        this.treeColor = this.tree.color;
         this.priceAndSizeModels = this.tree.priceAndSizeModels as PriceAndSizeModel[];
         this.imagesFromDB = this.tree.imageModels as ImageModel[];
         this.imagesFromDB.forEach(element => {
@@ -130,7 +139,7 @@ export class UpdateTreeComponent implements OnInit {
 
     var newPriceAndSizeModel:   PriceAndSizeModel =
     {
-      id: "00000000-0000-0000-0000-000000000000",
+      id: Guid.create().toString(),
     price: formValues.price,
     size:  this.sizeForPrice
   }
@@ -214,7 +223,6 @@ export class UpdateTreeComponent implements OnInit {
     };
     this.repository.update('api/trees/update', tree)
       .subscribe(_ => {
-        console.log( this.imagesThatHaveToDeleteInDB);
         this.imagesThatHaveToDeleteInDB.forEach(element=>{
           var address = 'api/upload/DeleteImageByNameFromDB?imageName=' + element.imageName;
           this.repository.delete(address).subscribe();

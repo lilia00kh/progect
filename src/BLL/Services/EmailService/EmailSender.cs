@@ -37,7 +37,7 @@ namespace BLL.Services.EmailService
 
         public string GetAdminEmail()
         {
-            return _emailConfig.From;
+            return "grinch.in.ua@ukr.net";
         }
 
         private MimeMessage CreateEmailMessage(Message message)

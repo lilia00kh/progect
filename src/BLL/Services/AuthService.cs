@@ -10,6 +10,7 @@ using BLL.JwtFeatures;
 using BLL.Services.EmailService;
 using DAL.Entities;
 using DAL.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 
@@ -22,18 +23,22 @@ namespace BLL.Services
         private readonly JwtHandler _jwtHandler;
         private readonly IUnitOfWork _database;
         private readonly IEmailSender _emailSender;
-        public AuthService(UserManager<User> userManager, IMapper mapper, JwtHandler jwtHandler, IUnitOfWork unitOfWork, IEmailSender emailSender)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public AuthService(UserManager<User> userManager, IMapper mapper, JwtHandler jwtHandler, IUnitOfWork unitOfWork, IEmailSender emailSender, IHttpContextAccessor httpContextAccessor)
         {
+
             _mapper = mapper;
             _jwtHandler = jwtHandler;
             _database = unitOfWork;
             _database.User.userManager = userManager;
             _emailSender = emailSender;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task <AuthResponseDto>Login(UserForAuthenticationDto userForAuthentication)
+
+        public async Task<AuthResponseDto> Login(UserForAuthenticationDto userForAuthentication)
         {
-            var user  = await _database.User.FindUserByEmailAsync(userForAuthentication.Email);
+            var user = await _database.User.FindUserByEmailAsync(userForAuthentication.Email);
             if (user == null)
                 return (new AuthResponseDto { ErrorMessage = "Користувач з таким логіном не зареєстрований" });
             if (!await _database.User.IsEmailConfirmedAsync(user))
@@ -51,7 +56,12 @@ namespace BLL.Services
 
         public async Task Registration(UserForRegistrationDto userForRegistration)
         {
-            if ((await _database.User.FindUserByEmailAsync(userForRegistration.Email))!= null)
+            string clientUrl = _httpContextAccessor.HttpContext.Request.Scheme
+                + "://"
+                + _httpContextAccessor.HttpContext.Request.Host.Value
+                + "/authentication/emailconfirmation";
+            userForRegistration.ClientUri = clientUrl;
+            if ((await _database.User.FindUserByEmailAsync(userForRegistration.Email)) != null)
                 throw new CustomException($"Користувач {userForRegistration.Email} не зареєстрований", "");
             var user = _mapper.Map<UserForRegistrationDto, User>(userForRegistration);
             var result = await _database.User.Registration(user, userForRegistration.Password);
@@ -63,7 +73,7 @@ namespace BLL.Services
                 throw new CustomException("Реєстрація не здійснена", "");
             }
             var token = await _database.User.GenerateEmailConfirmationTokenAsync(user);
-            await SendEmailAsync( "Будь ласка, підтвердіть email", userForRegistration.Email, userForRegistration.ClientUri, token);
+            await SendEmailAsync("Будь ласка, підтвердіть email", userForRegistration.Email, userForRegistration.ClientUri, token);
             await _database.User.AddToRoleAsync(user);
             await _database.Basket.Create(new Basket() { UserName = user.UserName });
             _database.Save();
@@ -75,9 +85,9 @@ namespace BLL.Services
             await _database.User.AddRoleForNewUser(user);
         }
 
-        public async Task SendEmailAsync( string mess, string email, string clientUri, string token)
+        public async Task SendEmailAsync(string mess, string email, string clientUri, string token)
         {
-            
+
             var param = new Dictionary<string, string>
             {
                 {"token", token },
@@ -91,9 +101,14 @@ namespace BLL.Services
 
         public async Task ForgotPasswordAsync(string email, string clientUri)
         {
+            string clientUrl = _httpContextAccessor.HttpContext.Request.Scheme
+                + "://"
+                + _httpContextAccessor.HttpContext.Request.Host.Value
+                + "/authentication/resetpassword";
+            clientUri = clientUrl;
             var user = await _database.User.FindUserByEmailAsync(email);
             if (user == null)
-                throw new CustomException($"Користувач {email} не зареєстрований","");
+                throw new CustomException($"Користувач {email} не зареєстрований", "");
             var token = await _database.User.GeneratePasswordResetTokenAsync(user);
             await SendEmailAsync("Зміна паролю", email, clientUri, token);
         }
@@ -102,7 +117,7 @@ namespace BLL.Services
         {
             var user = await _database.User.FindUserByEmailAsync(email);
             if (user == null)
-                throw new CustomException($"Користувач {email} не зареєстрований", "") ;
+                throw new CustomException($"Користувач {email} не зареєстрований", "");
             return await _database.User.GeneratePasswordResetTokenAsync(user);
 
         }

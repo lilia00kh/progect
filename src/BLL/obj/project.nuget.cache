@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R+qOm2GbBqjpK+1iH0EMJBymMQIPrff52u/K5/T5fI8g6bFcYG1x/s5iDYXIGAXVI1fnkZLWPi/9ph4PouXNsw==",
+  "dgSpecHash": "UybLfM6NQtvFyTkz2LSofnwF2WQJu/MUiJ+L6u6O7THW/04O0fVf87v5XtI5hyvxVUMOeKBpr3gVWraus8aHXg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lilia\\OneDrive\\Робочий стіл\\с_sharp\\проект для Ярка\\Project\\src\\BLL\\BLL.csproj",
+  "projectFilePath": "C:\\Users\\lilia\\source\\repos\\progect\\src\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lilia\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\lilia\\.nuget\\packages\\mailkit\\2.6.0\\mailkit.2.6.0.nupkg.sha512",
